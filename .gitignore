@@ -1,3 +1,5 @@
 .vscode/settings.json
 *.workspace
 infra/.terraform/**
+terraform.tfstate
+terraform.tfstate.backup
