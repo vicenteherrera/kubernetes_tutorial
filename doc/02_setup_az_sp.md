@@ -1,5 +1,7 @@
 ## 2. Set Up Azure
 
+This procedure should be done only once, even if you delete the cluster and destroy the infrastructure resources.
+
 ### Create and Azure account
 
 Browse the Azure portal website and create a new account:
@@ -42,10 +44,13 @@ $ az account show
 
 ### Create a Service Principal with the command line
 
-A Service Principal is like a new user that we create to grant permissions to only do what we need it to do.
-That way we are not using our user with owner role. 
+A Service Principal is like a new user that we create to grant permissions to only do what we need it to do. That way we are not using our user with owner role. 
 
-To create a new Service Principal, use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown in the previous command's outputs.
+AKS needs a service principal to be able to create virtual machines for the Kubernetes cluster infrastructure.
+
+//TODO: Create the Service Principal using Terraform, see https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa
+
+To create a new Service Principal named ServPrincipalAKS, use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown in the previous command's outputs.
 
 ```
 $ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" --name ServPrincipalAKS
