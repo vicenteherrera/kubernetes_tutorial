@@ -21,3 +21,15 @@ output "cluster_ca_certificate" {
 output "host" {
   value = "${azurerm_kubernetes_cluster.example.kube_config.0.host}"
 }
+
+output "acr_uri" {
+  value = "${azurerm_container_registry.example.login_server}"
+}
+
+output "acr_user" {
+  value = "${azurerm_container_registry.example.admin_username}"
+}
+
+output "acr_password" {
+  value = "${azurerm_container_registry.example.admin_password}"
+}
