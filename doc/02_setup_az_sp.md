@@ -67,6 +67,13 @@ Creating a role assignment under the scope of "/subscriptions/XXXXXXXX-XXXX-XXXX
 }
 ```
 
+We will store the client_id (appId) and client_secret (password) for the Service Principal in two environment variables, so Terraform can read them without having to pass them in each call or write them to a file.
+
+```
+TF_VAR_client_id="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+TF_VAR_client_secret="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+```
+
 The password (client secret) can't be retrieved later, but if you forget this credential, [reset it here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#reset-credentials).
 
 To retrieve the rest of the data from existing service principals created from the command line, use:
@@ -94,15 +101,13 @@ If you prefer to use the web interface, follow [these instructions](https://docs
 * ARM_TENANT_ID: Obtain it from the account info on login
 * ARM_SUBSCRIPTION_ID = Obtain it from the account info on login
 
-```
-set -gx ARM_CLIENT_ID "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-set -gx ARM_CLIENT_SECRET "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-set -gx ARM_TENANT_ID "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-set -gx ARM_SUBSCRIPTION_ID "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-```
 
-TODO:
 
-* Name service principal
-* Remove service principal key from main.tf
+
+//TODO:
+
+* Create Service Principal with TF
+* Create public IP address
+* Create monitoring and logging
 * Store secrets in key vault
+* Stablish variable types as string
