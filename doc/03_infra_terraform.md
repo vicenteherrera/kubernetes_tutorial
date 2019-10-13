@@ -14,13 +14,15 @@ $ terraform init
 Test the execution plan:
 
 ```
-$ terraform plan -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
+$ terraform plan -out=plan.zip
 ```
+
+We store the generated plan, so if once deployed we change the content of the Terraform files, we still know how to destroy what has been created.
 
 Run the execution plan using credetials for the service principal:
 
 ```
-$ terraform apply -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
+$ terraform plan
 ```
 
 
