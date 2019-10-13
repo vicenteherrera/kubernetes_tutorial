@@ -3,7 +3,7 @@
 
 Alternative 1. Using Azure-cli:
 ```
-$ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s
+$ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s --overwrite
 ```
 
 Alternative 2. Using Terraform output variables:
@@ -26,7 +26,7 @@ kubectl context view
 ## Login with Docker to Azure Cointer Registry
 
 ```
-$  docker login $(terraform output acr_uri) -u $(terraform output acr_user) -p $(terraform output acr_password)
+$ docker login $(terraform output acr_uri) -u $(terraform output acr_user) -p $(terraform output acr_password)
 
 WARNING! Using --password via the CLI is insecure. Use --password-stdin.
 WARNING! Your password will be stored unencrypted in /home/mord/.docker/config.json.
