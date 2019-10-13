@@ -1,35 +1,45 @@
-output "id" {
-  value = "${azurerm_kubernetes_cluster.example.id}"
-}
 
-output "kube_config" {
-  value = "${azurerm_kubernetes_cluster.example.kube_config_raw}"
-}
-
-output "client_key" {
-  value = "${azurerm_kubernetes_cluster.example.kube_config.0.client_key}"
-}
-
-output "client_certificate" {
-  value = "${azurerm_kubernetes_cluster.example.kube_config.0.client_certificate}"
-}
-
-output "cluster_ca_certificate" {
-  value = "${azurerm_kubernetes_cluster.example.kube_config.0.cluster_ca_certificate}"
-}
-
-output "host" {
-  value = "${azurerm_kubernetes_cluster.example.kube_config.0.host}"
+output "resource_group_name" {
+    value = "${module.resource-group.name}"
 }
 
 output "acr_uri" {
-  value = "${azurerm_container_registry.example.login_server}"
+  value = "${module.acr.acr_uri}"
 }
 
 output "acr_user" {
-  value = "${azurerm_container_registry.example.admin_username}"
+  value = "${module.acr.acr_user}"
 }
 
 output "acr_password" {
-  value = "${azurerm_container_registry.example.admin_password}"
+  value = "${module.acr.acr_password}"
+  sensitive = true
+}
+
+output "id" {
+  value = "${module.aks.id}"
+}
+
+output "kube_config" {
+  value = "${module.aks.kube_config}"
+  sensitive = true
+}
+
+output "client_key" {
+  value = "${module.aks.client_key}"
+  sensitive = true
+}
+
+output "client_certificate" {
+  value = "${module.aks.client_certificate}"
+  sensitive = true
+}
+
+output "cluster_ca_certificate" {
+  value = "${module.aks.cluster_ca_certificate}"
+  sensitive = true
+}
+
+output "host" {
+  value = "${module.aks.host}"
 }
