@@ -4,6 +4,11 @@ This project is an extension of the project "Hipster Shop: Cloud-Native Microser
 
 The main focus here is to be able to deploy that demo project to Azure Kubernetes Service using best practices.
 
+## Limitations
+
+The Stackdriver log monitor is specific to Google Cloud, the driver will try to connect several times and then give up.
+See microservices-demo/docs/development-principles.md
+
 ## Getting started
 
 We will assume you work with a *bash* environment. 
@@ -99,6 +104,11 @@ set -gx ARM_TENANT_ID "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 set -gx ARM_SUBSCRIPTION_ID "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 ```
 
+TODO:
+
+* Name service principal
+* Remove service principal key from main.tf
+* Store secrets in key vault
 
 ## Deploy infrastructure with Terraform
 
@@ -111,19 +121,137 @@ $ terraform init
 Test the execution plan:
 
 ```
-$ terraform plan
+$ terraform plan -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
 ```
 
-## Check the Kubernetes cluster
+Run the execution plan using credetials for the service principal:
 
 ```
-$ az aks get-credentials --resource-group agonesRG --name test-cluster
+$ terraform apply -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
+```
+
+## Get Kubectl credentials
+
+Alternative 1. Using Azure-cli:
+```
+$ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s
+```
+
+Alternative 2. Using Terraform output variables:
+```
+$ export KUBECONFIG="$(terraform output kube_config)"
+```
+
+
+To later check which context you are connected to with kubectl:
+
+```
+kubectl config current-context
+```
+
+If you what to list all other contexts:
+
+```
+kubectl context view
+```
+## Login with Docker to Azure Cointer Registry
+
+```
+$  docker login $(terraform output acr_uri) -u $(terraform output acr_user) -p $(terraform output acr_password)
+
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /home/mord/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+We will also store the ACR URI, so it is easier to reference outside terraform infrastructure directory:
+```
+$ export ACR_URI="$(terraform output acr_uri)" && echo $ACR_URI
+```
+
+## Set up the kubernetes cluster with Skaffold
+
+```
+$ cd ..
+$ cd microservices-demo
+$ skaffold run --default-repo $ACR_URI --tail
+
+Generating tags...
+ - testacr22.azurecr.io/emailservice -> testacr22.azurecr.io/emailservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/productcatalogservice -> testacr22.azurecr.io/productcatalogservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/recommendationservice -> testacr22.azurecr.io/recommendationservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/shippingservice -> testacr22.azurecr.io/shippingservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/checkoutservice -> testacr22.azurecr.io/checkoutservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/paymentservice -> testacr22.azurecr.io/paymentservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/currencyservice -> testacr22.azurecr.io/currencyservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/cartservice -> testacr22.azurecr.io/cartservice:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/frontend -> testacr22.azurecr.io/frontend:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/loadgenerator -> testacr22.azurecr.io/loadgenerator:v0.1.2-2-g2177813
+ - testacr22.azurecr.io/adservice -> testacr22.azurecr.io/adservice:v0.1.2-2-g2177813
+Tags generated in 16.110141ms
+Checking cache...
+ - testacr22.azurecr.io/emailservice: Found. Pushing
+The push refers to repository [testacr22.azurecr.io/emailservice]
+```
+
+## Check the health of the cluster
+
+```
 $ kubectl get nodes
 ```
-## Tear down the infrastructure
+
+Check all pods
+
+```
+$ kubectl get pods --all-namespaces
+```
+
+## Tear down the cluster and infrastructure
 
 Don't forget to tear down the Kubernetes cluster when you have finished experimenting with it. As the load test tool will start to generate simulated traffic inmediatly, it will lead to expensive charges if left running.
 
 ```
+$ skaffold delete
+```
+
+To also delete the Azure infrastructure resources, use:
+
+```
+$ cd ..
+$ cd infra
 $ terraform destroy
 ```
+
+## Troubleshooting
+
+### Not available Microsoft.Network
+
+### One or more node with status 'CrashLoopBackOff'
+
+```
+$ kubectl get pods
+$ kubectl describe pod pod-crashloopbackoff-7f7c556bf5-9vc89
+$ kubectl logs pod-crashloopbackoff-7f7c556bf5-9vc89 im-crashing
+$ kubectl describe pod pod-crashloopbackoff-liveness-probe-7564df8646-v96tq
+```
+See https://sysdig.com/blog/debug-kubernetes-crashloopbackoff/
+https://managedkube.com/kubernetes/pod/failure/crashloopbackoff/k8sbot/troubleshooting/2019/02/12/pod-failure-crashloopbackoff.html
+
+### failed to initialize stackdriver exporter: stackdriver: 
+
+```
+failed to initialize stackdriver exporter: stackdriver:  google: could not find default credentials. See https://developers.google.com/accounts/docs/application-default-credentials for more information
+```
+
+Stackdriver only exist in the Google Cloud Environment
+
+### Node size
+
+Node must have at least 6 Gb RAM and 32 Gb hard disk. 1 Node for testing, 3 for "production".
+
+### Service principal should have permission
+
+### RBCA not enabled
