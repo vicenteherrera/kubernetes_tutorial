@@ -1,11 +1,19 @@
 provider "azurerm" {
-  # Whilst version is optional, we /strongly recommend/ using it to pin the version of the Provider being used
+  # Version is optional, but a good practice to fix the version number for the one used when defining this file
   version = "=1.34.0"
 }
 
 resource "azurerm_resource_group" "example" {
   name     = "${var.prefix}-k8s-resources"
   location = "${var.location}"
+}
+
+resource "azurerm_container_registry" "example" {
+  name                     = "${var.prefix}Acr"
+  resource_group_name      = "${azurerm_resource_group.example.name}"
+  location                 = "${azurerm_resource_group.example.location}"
+  sku                      = "Standard"
+  admin_enabled            = true
 }
 
 resource "azurerm_kubernetes_cluster" "example" {
@@ -16,18 +24,17 @@ resource "azurerm_kubernetes_cluster" "example" {
 
   agent_pool_profile {
     name            = "default"
-    count           = 1
-    vm_size         = "Standard_D1_v2"
+    count           = 1     # Min nodes recommended for production
+    vm_size         = "Standard_D2_v2"    # Hispter Shop requires min 6Gb Ram
     os_type         = "Linux"
-    os_disk_size_gb = 30
+    os_disk_size_gb = 40
   }
 
   service_principal {
-    client_id     = "defined_in_environment_do_not_remove_this"
-    client_secret = "defined_in_environment_do_not_remove_this"
+    client_id     = "${var.client_id}" #"3d675fb6-28bc-4922-a267-0c0e97e305f6"
+    client_secret = "${var.client_secret}" #69f5c2ec-87fa-4c61-9247-e31cc8a846d1"
   }
  
-
   tags = {
     Environment = "Production"
   }
