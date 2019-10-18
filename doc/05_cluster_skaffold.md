@@ -4,7 +4,7 @@
 ```
 $ cd ..
 $ cd microservices-demo
-$ skaffold run --default-repo $ACR_URI --tail
+$ skaffold run --tail
 
 Generating tags...
  - testacr22.azurecr.io/emailservice -> testacr22.azurecr.io/emailservice:v0.1.2-2-g2177813
@@ -24,7 +24,7 @@ Checking cache...
 The push refers to repository [testacr22.azurecr.io/emailservice]
 ```
 
-## Check the health of the cluster
+## Check the cluster
 
 ```
 $ kubectl get nodes
@@ -35,3 +35,12 @@ Check all pods
 ```
 $ kubectl get pods --all-namespaces
 ```
+
+```
+$ kubectl get service frontend-external
+
+NAME                TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+frontend-external   LoadBalancer   10.0.177.210   <pending>     80:31482/TCP   12s
+```
+
+

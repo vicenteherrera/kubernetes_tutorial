@@ -111,3 +111,6 @@ If you prefer to use the web interface, follow [these instructions](https://docs
 * Create monitoring and logging
 * Store secrets in key vault
 * Stablish variable types as string
+* Store Terraform state on Azure Store
+* Pipeline for CD/CI
+* Param different environments instead of "example"
