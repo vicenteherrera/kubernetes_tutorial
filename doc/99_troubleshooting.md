@@ -92,3 +92,12 @@ Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token:
 ```
 
 Update your terraform binary to latest version (at least v0.12.10). Make sure you go to the official page referenced in this documentation for the latest one.
+
+### Grafana's dashboard shows Error "Bad Gateway", and no data
+
+You need to specify __--set rbac.create=true__ when you install the Helm chart.
+
+```
+helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
+```
+
