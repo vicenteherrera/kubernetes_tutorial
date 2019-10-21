@@ -79,7 +79,7 @@ ARM_SUBSCRIPTION_ID="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
  * https://www.terraform.io/docs/providers/azurerm/auth/service_principal_client_secret.html
 
 
-### Unknown token: 19:25 IDENT module.resource-group.name
+### Unknown token: 19:25 IDENT module.resource_group.name
 
 ``` 
 $ terraform init
@@ -88,7 +88,7 @@ There are some problems with the configuration, described below.
 The Terraform configuration must be valid before initialization so that
 Terraform can determine which modules and providers need to be installed.
 
-Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token: 19:25 IDENT module.resource-group.name
+Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token: 19:25 IDENT module.resource_group.name
 ```
 
 Update your terraform binary to latest version (at least v0.12.10). Make sure you go to the official page referenced in this documentation for the latest one.
