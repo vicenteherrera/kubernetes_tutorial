@@ -14,3 +14,16 @@ variable "client_id" {
 variable "client_secret" {
   description = "Service Principal client secret (password)"
 }
+
+
+variable "node_count" {
+  description = "Number of nodes for the Kubernetes cluster"
+}
+
+variable "vm_size" {
+  description = "VM size for each node"
+}
+
+variable "os_disk_size_gb" {
+  description = "VM disk size in Gb"
+}
