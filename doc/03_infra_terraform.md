@@ -26,3 +26,7 @@ $ terraform plan
 ```
 
 
+---
+[Next step: 4. Get credentials](./doc/04_get_credentials.md)  
+[Previous step: 2. Initial Azure setup](./doc/02_setup_az_sp.md)
+

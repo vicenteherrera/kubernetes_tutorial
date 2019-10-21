@@ -9,7 +9,7 @@ The main focus here is to be able to deploy that demo project to Azure Kubernete
 The Stackdriver log monitor is specific to Google Cloud, the driver will try to connect several times and then give up.
 See microservices-demo/docs/development-principles.md
 
-## Getting started
+## 0. Getting started
 
 This instructions comes with some optional and alternative parts. You can skip them if you like for a straigh forward procedure.
 
@@ -20,7 +20,7 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 Follow these steps:
 
 * [1. Installing prerequisites](./doc/01_prerequisites.md)
-* [2. Setting up Azure](./doc/02_setup_az_sp.md)
+* [2. Initial Azure setup](./doc/02_setup_az_sp.md)
 * [3. Create infrastructure with Terraform](./doc/03_infra_terraform.md)
 * [4. Get credentials](./doc/04_get_credentials.md)
 * [5. Create cluster with Skaffold](./doc/05_cluster_skaffold.md)
@@ -29,4 +29,4 @@ Follow these steps:
 * [Appendix: Troubleshooting](./doc/99_troubleshooting.md)
 
 ---
-[Next step: 1. Installing prerequisites](./doc/01_prerequisites.md)
+[Next step: 1. Installing prerequisites](./doc/01_prerequisites.md)  

@@ -15,3 +15,8 @@ $ cd ..
 $ cd infra
 $ terraform destroy -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
 ```
+
+
+---
+[Next step: Appendix Troubleshooting](./doc/99_troubleshooting.md)  
+[Previous step: 6. Create cluster with Skaffold](./doc/06_helm.md)

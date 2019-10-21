@@ -9,3 +9,8 @@ You will need to install the following tools:
 * [Terraform](https://www.terraform.io/downloads.html): To automatically create infrastructure (resource group, managed Kubernetes cluster).
 * [Skaffold](https://skaffold.dev/docs/getting-started/#installing-skaffold): To populate the cluster with all the items to run the microservices application (control plane, worker pods).
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/): Used by skaffold to control the cluster, we will also use it to inspect it from the command line.
+
+---
+[Next step: 2. Initial Azure setup](./doc/02_setup_az_sp.md)  
+[Previous step: 0. Getting started](./doc/02_setup_az_sp.md)
+

@@ -101,3 +101,6 @@ You need to specify __--set rbac.create=true__ when you install the Helm chart.
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
 ```
 
+
+---
+[7. Terminate and free resources](./doc/98_free_resources.md)  

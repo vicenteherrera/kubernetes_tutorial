@@ -63,3 +63,8 @@ $ export ACR_URI="$(terraform output acr_uri)" && echo $ACR_URI
 ```
 $ set SKAFFOLD_DEFAULT_REPO="$(terraform output acr_uri)"
 ```
+
+---
+[Next step: 5. Create cluster with Skaffold](./doc/05_cluster_skaffold.md)  
+[Previous step: 3. Create infrastructure with Terraform](./doc/03_infra_terraform.md)
+

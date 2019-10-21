@@ -1,6 +1,6 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 2. Initial Azure set up
+## 2. Initial Azure setup
 
 This procedure should be done only once, even if you delete the cluster and destroy the infrastructure resources.
 
@@ -125,3 +125,9 @@ If you prefer to use the web interface, follow [these instructions](https://docs
 * Store Terraform state on Azure Store
 * Pipeline for CD/CI
 * Param different environments instead of "example"
+
+
+---
+[Next step: 3. Create infrastructure with Terraform](./doc/03_infra_terraform.md)  
+[Previous step: 1. Installing prerequisites](./doc/01_prerequisites.md)  
+
