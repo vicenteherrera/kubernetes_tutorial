@@ -7,7 +7,7 @@ The main focus here is to be able to deploy that demo project to Azure Kubernete
 ## Limitations
 
 The Stackdriver log monitor is specific to Google Cloud, the driver will try to connect several times and then give up.
-See microservices-demo/docs/development-principles.md
+See [microservices-demo/docs/development-principles.md](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
 
 ## 0. Getting started
 
