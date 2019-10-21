@@ -60,5 +60,5 @@ $ export ACR_URI="$(terraform output acr_uri)" && echo $ACR_URI
 ```
 
 ```
-$ set KAFFOLD_DEFAULT_REPO="$(terraform output acr_uri)"
+$ set SKAFFOLD_DEFAULT_REPO="$(terraform output acr_uri)"
 ```
