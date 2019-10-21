@@ -12,5 +12,5 @@ You will need to install the following tools:
 
 ---
 [Next step: 2. Initial Azure setup](../doc/02_setup_az_sp.md)  
-[Previous step: 0. Getting started](../doc/02_setup_az_sp.md)
+[Previous step: 0. Getting started](../README.md)
 
