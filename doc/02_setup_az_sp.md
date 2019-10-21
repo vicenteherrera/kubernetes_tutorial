@@ -1,4 +1,6 @@
-## 2. Set Up Azure
+# Azure Hipster Shop: AKS Microservices Demo
+
+## 2. Initial Azure set up
 
 This procedure should be done only once, even if you delete the cluster and destroy the infrastructure resources.
 

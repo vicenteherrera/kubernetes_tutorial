@@ -1,5 +1,6 @@
+# Azure Hipster Shop: AKS Microservices Demo
 
-## Tear down the cluster and infrastructure
+## 7. Tear down the cluster and infrastructure
 
 Don't forget to tear down the Kubernetes cluster when you have finished experimenting with it. As the load test tool will start to generate simulated traffic inmediatly, it will lead to expensive charges if left running.
 

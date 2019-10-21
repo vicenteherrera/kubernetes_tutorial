@@ -1,8 +1,8 @@
-## Troubleshooting
+# Azure Hipster Shop: AKS Microservices Demo
 
-### Not available Microsoft.Network
+## Apendix: Troubleshooting
 
-### One or more node with status 'CrashLoopBackOff'
+### One or more nodes with status 'CrashLoopBackOff'
 
 ```
 $ kubectl get pods

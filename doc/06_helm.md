@@ -1,5 +1,6 @@
+# Azure Hipster Shop: AKS Microservices Demo
 
-## Helm
+## 6. Installing Prometheus and Grafana using Helm
 
 ### Installing Helm client
 

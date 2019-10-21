@@ -1,5 +1,6 @@
+# Azure Hipster Shop: AKS Microservices Demo
 
-## Get Kubectl credentials
+## 4. Get Kubectl credentials
 
 Alternative 1. Using Azure-cli:
 ```

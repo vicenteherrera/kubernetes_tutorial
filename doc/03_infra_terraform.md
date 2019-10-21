@@ -1,6 +1,6 @@
+# Azure Hipster Shop: AKS Microservices Demo
 
-
-## Deploy infrastructure with Terraform
+## 3. Deploy infrastructure with Terraform
 
 Change to the `infra` directory and initialize Terraform's Azure driver:
 

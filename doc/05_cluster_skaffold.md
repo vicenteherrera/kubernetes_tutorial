@@ -1,5 +1,6 @@
+# Azure Hipster Shop: AKS Microservices Demo
 
-## Set up the kubernetes cluster with Skaffold
+## 5. Set up the kubernetes cluster with Skaffold
 
 ```
 $ cd ..

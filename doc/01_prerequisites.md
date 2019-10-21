@@ -1,4 +1,6 @@
-### Install prerequisites
+# Azure Hipster Shop: AKS Microservices Demo
+
+## 1. Install prerequisites
 
 You will need to install the following tools:
 
