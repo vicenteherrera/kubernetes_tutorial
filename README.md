@@ -29,4 +29,4 @@ Follow these steps:
 * [Appendix: Troubleshooting](./doc/99_troubleshooting.md)
 
 ---
-[Next step: 1. Installing prerequisites](../doc/01_prerequisites.md)  
+[Next step: 1. Installing prerequisites](./doc/01_prerequisites.md)  
