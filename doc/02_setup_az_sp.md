@@ -42,6 +42,15 @@ You can check any time what account you are logged in and this information with:
 $ az account show
 ```
 
+You may need to register the use of the following providers with your Azure account to create the kind of resources we are going to use.
+
+```
+az provider register -n Microsoft.Network
+az provider register -n Microsoft.Storage
+az provider register -n Microsoft.Compute
+az provider register -n Microsoft.ContainerService
+```
+
 ### Create a Service Principal with the command line
 
 A Service Principal is like a new user that we create to grant permissions to only do what we need it to do. That way we are not using our user with owner role. 
