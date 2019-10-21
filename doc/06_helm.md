@@ -159,6 +159,6 @@ http://www.allaboutwindowssl.com/2019/03/setup-prometheus-grafana-monitoring-on-
 
 
 ---
-[Next step: 7. Terminate and free resources](./doc/98_free_resources.md)  
-[Previous step: 5. Create cluster with Skaffold](./doc/05_cluster_skaffold.md)
+[Next step: 7. Terminate and free resources](../doc/98_free_resources.md)  
+[Previous step: 5. Create cluster with Skaffold](../doc/05_cluster_skaffold.md)
 

@@ -11,6 +11,6 @@ You will need to install the following tools:
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/): Used by skaffold to control the cluster, we will also use it to inspect it from the command line.
 
 ---
-[Next step: 2. Initial Azure setup](./doc/02_setup_az_sp.md)  
-[Previous step: 0. Getting started](./doc/02_setup_az_sp.md)
+[Next step: 2. Initial Azure setup](../doc/02_setup_az_sp.md)  
+[Previous step: 0. Getting started](../doc/02_setup_az_sp.md)
 

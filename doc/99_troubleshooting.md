@@ -103,4 +103,4 @@ helm install --namespace monitoring --name prometheus stable/prometheus-operator
 
 
 ---
-[7. Terminate and free resources](./doc/98_free_resources.md)  
+[7. Terminate and free resources](../doc/98_free_resources.md)  

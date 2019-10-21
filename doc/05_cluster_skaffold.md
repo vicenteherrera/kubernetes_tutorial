@@ -46,5 +46,5 @@ frontend-external   LoadBalancer   10.0.177.210   <pending>     80:31482/TCP   1
 
 ---
 [Next step: 6. Create cluster with Skaffold](./doc/06_helm.md)  
-[Previous step: 4. Get credentials](./doc/04_get_credentials.md)
+[Previous step: 4. Get Kubectl and ACR credentials](./doc/04_get_credentials.md)
 

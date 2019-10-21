@@ -128,6 +128,6 @@ If you prefer to use the web interface, follow [these instructions](https://docs
 
 
 ---
-[Next step: 3. Create infrastructure with Terraform](./doc/03_infra_terraform.md)  
-[Previous step: 1. Installing prerequisites](./doc/01_prerequisites.md)  
+[Next step: 3. Provision infrastructure with Terraform](../doc/03_infra_terraform.md)  
+[Previous step: 1. Installing prerequisites](../doc/01_prerequisites.md)  
 

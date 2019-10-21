@@ -21,7 +21,7 @@ Follow these steps:
 
 * [1. Installing prerequisites](./doc/01_prerequisites.md)
 * [2. Initial Azure setup](./doc/02_setup_az_sp.md)
-* [3. Create infrastructure with Terraform](./doc/03_infra_terraform.md)
+* [3. Provision infrastructure with Terraform](./doc/03_infra_terraform.md)
 * [4. Get credentials](./doc/04_get_credentials.md)
 * [5. Create cluster with Skaffold](./doc/05_cluster_skaffold.md)
 * [6. Create cluster with Skaffold](./doc/06_helm.md)
@@ -29,4 +29,4 @@ Follow these steps:
 * [Appendix: Troubleshooting](./doc/99_troubleshooting.md)
 
 ---
-[Next step: 1. Installing prerequisites](./doc/01_prerequisites.md)  
+[Next step: 1. Installing prerequisites](../doc/01_prerequisites.md)  

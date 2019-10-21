@@ -1,6 +1,8 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 4. Get Kubectl credentials
+## 4. Get Kubectl and ACR credentials
+
+### Get Kubectl credentials
 
 Alternative 1. Using Azure-cli:
 ```
@@ -24,15 +26,15 @@ If you what to list all other contexts:
 ```
 kubectl context view
 ```
-## Examine Kluster Dashboard
+### Examine Kluster Dashboard
 
-### AKS deployment of Dashboard
+#### AKS deployment of Dashboard
 
 az aks browse --resource-group myResourceGroup --name myAKSCluster
 
 See: https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard
 
-### General deployment of Dashboard
+#### General deployment of Dashboard
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
 kubectl proxy
@@ -42,7 +44,7 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 See: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
-## Login with Docker to Azure Cointer Registry
+### Login with Docker to Azure Cointer Registry
 
 ```
 $ docker login $(terraform output acr_uri) -u $(terraform output acr_user) -p $(terraform output acr_password)
@@ -66,5 +68,5 @@ $ set SKAFFOLD_DEFAULT_REPO="$(terraform output acr_uri)"
 
 ---
 [Next step: 5. Create cluster with Skaffold](./doc/05_cluster_skaffold.md)  
-[Previous step: 3. Create infrastructure with Terraform](./doc/03_infra_terraform.md)
+[Previous step: 3. Provision infrastructure with Terraform](./doc/03_infra_terraform.md)
 

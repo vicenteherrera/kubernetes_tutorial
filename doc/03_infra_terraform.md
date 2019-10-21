@@ -1,6 +1,6 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 3. Deploy infrastructure with Terraform
+## 3. Provision infrastructure with Terraform
 
 Change to the `infra` directory and initialize Terraform's Azure driver:
 
@@ -27,6 +27,6 @@ $ terraform plan
 
 
 ---
-[Next step: 4. Get credentials](./doc/04_get_credentials.md)  
-[Previous step: 2. Initial Azure setup](./doc/02_setup_az_sp.md)
+[Next step: 4. Get credentials Kubectl and ACR](../doc/04_get_credentials.md)  
+[Previous step: 2. Initial Azure setup](../doc/02_setup_az_sp.md)
 
