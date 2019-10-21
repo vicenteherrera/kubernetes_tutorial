@@ -26,3 +26,18 @@ module "aks" {
   os_disk_size_gb     = "${var.os_disk_size_gb}"
   resource_group_name = module.resource-group.name
 }
+
+module "load_balancer" {
+  source               = "./modules/load_balancer"
+  public_ip_address_id = module.public_ip.id
+  location             = "${var.location}"
+  prefix               = "${var.prefix}"
+  resource_group_name  = module.resource-group.name
+}
+
+module "public_ip" {
+  source              = "./modules/public_ip"
+  prefix              = "${var.prefix}"
+  location            = "${var.location}"
+  resource_group_name = module.resource-group.name
+}
