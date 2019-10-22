@@ -10,8 +10,11 @@ $ kubectl describe pod pod-crashloopbackoff-7f7c556bf5-9vc89
 $ kubectl logs pod-crashloopbackoff-7f7c556bf5-9vc89 im-crashing
 $ kubectl describe pod pod-crashloopbackoff-liveness-probe-7564df8646-v96tq
 ```
-See https://sysdig.com/blog/debug-kubernetes-crashloopbackoff/
-https://managedkube.com/kubernetes/pod/failure/crashloopbackoff/k8sbot/troubleshooting/2019/02/12/pod-failure-crashloopbackoff.html
+
+Try looking for more information at:
+
+ * https://sysdig.com/blog/debug-kubernetes-crashloopbackoff/
+ * https://managedkube.com/kubernetes/pod/failure/crashloopbackoff/k8sbot/troubleshooting/2019/02/12/pod-failure-crashloopbackoff.html
 
 ### failed to initialize stackdriver exporter: stackdriver: 
 
@@ -19,16 +22,11 @@ https://managedkube.com/kubernetes/pod/failure/crashloopbackoff/k8sbot/troublesh
 failed to initialize stackdriver exporter: stackdriver:  google: could not find default credentials. See https://developers.google.com/accounts/docs/application-default-credentials for more information
 ```
 
-Stackdriver only exist in the Google Cloud Environment
+*Solution*: Stackdriver only exist in the Google Cloud Environment, you don't need to do anything.
 
 ### Node size
 
 Node must have at least 6 Gb RAM and 32 Gb hard disk. 1 Node for testing, 3 for "production".
-
-### Service principal should have permission
-
-### RBCA not enabled
-
 
 ### Azure CLI Authorization Profile was not found
 
@@ -51,10 +49,6 @@ Error: Error running plan: 3 error(s) occurred:
 * module.acr.provider.azurerm: Error building AzureRM Client: Azure CLI Authorization Profile was not found. Please ensure the Azure CLI is installed and then log-in with `az login`.
 * module.aks.provider.azurerm: Error building AzureRM Client: Azure CLI Authorization Profile was not found. Please ensure the Azure CLI is installed and then log-in with `az login`.
 ```
-
-*Non working solutions*
-
-
 
 *Solution*
 
@@ -90,12 +84,11 @@ Terraform can determine which modules and providers need to be installed.
 
 Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token: 19:25 IDENT module.resource_group.name
 ```
-
-Update your terraform binary to latest version (at least v0.12.10). Make sure you go to the official page referenced in this documentation for the latest one.
+*Solution*: Update your terraform binary to latest version (at least v0.12.10). Make sure you go to the official page referenced in this documentation for the latest one.
 
 ### Grafana's dashboard shows Error "Bad Gateway", and no data
 
-You need to specify __--set rbac.create=true__ when you install the Helm chart.
+*Solution*: You need to specify __--set rbac.create=true__ when you install the Helm chart.
 
 ```
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true

@@ -4,7 +4,7 @@
 
 Skaffold allows us to have a seamless development workflow with Kubernetes.
 
-To continue you must have defiend the environment variable SKAFFOLD_DEFAULT_REPO and logged in with Docker to your created ACR as described in previous section.
+To continue you must have defiend the environment variable `SKAFFOLD_DEFAULT_REPO` and logged in with Docker to your created ACR as described in previous section.
 
 ### Skaffold workflow
 
@@ -111,6 +111,6 @@ _Improvement_: With the default configuration, Skaffold doesn't use your provisi
 _Improvement_: You could set up a CI/CD pipeline in Azure Devops portal likend to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
 
 ---
-[Next step: 6. Create cluster with Skaffold](../docs/06_helm.md)  
+[Next step: 6. Installing Prometheus and Grafana using Helm](../docs/06_helm.md)  
 [Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md)
 
