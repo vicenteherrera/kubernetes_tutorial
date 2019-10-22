@@ -49,6 +49,6 @@ frontend-external   LoadBalancer   10.0.177.210   <pending>     80:31482/TCP   1
 You could set up a CI/CD pipeline in Azure Devops portal likend to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
 
 ---
-[Next step: 6. Create cluster with Skaffold](../doc/06_helm.md)  
-[Previous step: 4. Get Kubectl and ACR credentials](../doc/04_get_credentials.md)
+[Next step: 6. Create cluster with Skaffold](../docs/06_helm.md)  
+[Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md)
 

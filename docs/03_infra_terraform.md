@@ -64,6 +64,6 @@ You could also create a Log Analytics resource for the cluster. [example](https:
 Use __workspaces__ to define different paramenters for a production and development kubernetes environment ([more info](https://www.terraform.io/docs/state/workspaces.html) )
 
 ---
-[Next step: 4. Get credentials Kubectl and ACR](../doc/04_get_credentials.md)  
-[Previous step: 2. Initial Azure setup](../doc/02_setup_az_sp.md)
+[Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  
+[Previous step: 2. Initial Azure setup](../docs/02_setup_az_sp.md)
 

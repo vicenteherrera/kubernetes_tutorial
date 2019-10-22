@@ -66,6 +66,6 @@ $ set SKAFFOLD_DEFAULT_REPO="$(terraform output acr_uri)"
 ```
 
 ---
-[Next step: 5. Create cluster with Skaffold](../doc/05_cluster_skaffold.md)  
-[Previous step: 3. Provision infrastructure with Terraform](../doc/03_infra_terraform.md)
+[Next step: 5. Create cluster with Skaffold](../docs/05_cluster_skaffold.md)  
+[Previous step: 3. Provision infrastructure with Terraform](../docs/03_infra_terraform.md)
 
