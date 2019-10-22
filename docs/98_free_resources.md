@@ -22,7 +22,7 @@ kubectl delete crd alertmanagers.monitoring.coreos.com
 
 ### Delete microservices resources
 
-Don't forget to tear down the Kubernetes cluster when you have finished experimenting with it. As the load test tool will start to generate simulated traffic inmediatly, it will lead to expensive charges if left running.
+Don't forget to tear down the Kubernetes cluster when you have finished experimenting with it. As the load test tool will start to generate simulated traffic immediately, it will lead to expensive charges if left running.
 
 From the `microservices-demo` folder, run:
 ```
@@ -37,7 +37,7 @@ To also destroy the Azure infrastructure elements, from the `infra` folder use:
 ```
 $ cd ..
 $ cd infra
-$ terraform destroy -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
+$ terraform destroy
 ```
 
 ---

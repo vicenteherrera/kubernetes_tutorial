@@ -1,10 +1,10 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 5. Set up the kubernetes cluster with Skaffold
+## 5. Set up the Kubernetes cluster with Skaffold
 
 Skaffold allows us to have a seamless development workflow with Kubernetes.
 
-To continue you must have defiend the environment variable `SKAFFOLD_DEFAULT_REPO` and logged in with Docker to your created ACR as described in previous section.
+To continue you must have defined the environment variable `SKAFFOLD_DEFAULT_REPO` and logged in with Docker to your created ACR as described in previous section.
 
 ### Skaffold workflow
 
@@ -47,7 +47,7 @@ Checking cache...
 The push refers to repository [systestacr.azurecr.io/emailservice]
 ```
 
-Skaffold will start its workflow, using the `src` files as sources for the microservices, and the files from `kubermentes-manifest` to deploy the Kubernetes asociated resources.
+Skaffold will start its workflow, using the `src` files as sources for the microservices, and the files from `kubermentes-manifest` to deploy the Kubernetes associated resources.
 
 
 Using the --tail switch, you will start to see messages in the console like these:
@@ -58,7 +58,7 @@ Using the --tail switch, you will start to see messages in the console like thes
 [emailservice-54ffc447b8-q9md2 server] [SpanData(name='Recv.grpc.health.v1.Health.Check', context=SpanContext(trace_id=ac3badfd1dc14226b960f7189d85a926, span_id=None, trace_options=TraceOptions(enabled=True), tracestate=None), span_id='c76d223f1b5a4440', parent_span_id=None, attributes={'component': 'grpc'}, start_time='2019-10-22T03:55:32.329961Z', end_time='2019-10-22T03:55:32.330053Z', child_span_count=0, stack_trace=None, time_events=[<opencensus.trace.time_event.TimeEvent object at 0x7f20c823ccd0>, <opencensus.trace.time_event.TimeEvent object at 0x7f20c823e550>], links=[], status=None, same_process_as_parent_span=None, span_kind=1)]
 ```
 
-The Hipster Shop demo uses a Stackdriver log monitor that is specific to Google Cloud, and its driver will try to connect several times and then give up. See [the oficial documentation](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
+The Hipster Shop demo uses a Stackdriver log monitor that is specific to Google Cloud, and its driver will try to connect several times and then give up. See [the official documentation](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
 
 When using the "run" command, you can push Ctrl+C to exit and the microservices application will continue to run. Also, changes to sources will not be synced to the cluster.
 
@@ -110,7 +110,7 @@ $ kubectl get pods --all-namespaces
 
 _Improvement_: With the default configuration, Skaffold doesn't use your provisioned public IP. Change it to use that.
 
-_Improvement_: You could set up a CI/CD pipeline in Azure Devops portal likend to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
+_Improvement_: You could set up a CI/CD pipeline in Azure Devops portal linked to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
 
 ---
 [Next step: 6. Installing Prometheus and Grafana using Helm](../docs/06_helm.md)  

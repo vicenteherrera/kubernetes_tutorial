@@ -2,7 +2,7 @@
 
 ## 3. Provision infrastructure with Terraform
 
-We will store the infrastructure state in the volume storage created previously, so any other person trying to work with this infrastructure will have access to it. Also when executing changes, the state will be locked, preveting other users to try to change infrastructure at the same time.
+We will store the infrastructure state in the volume storage created previously, so any other person trying to work with this infrastructure will have access to it. Also when executing changes, the state will be locked, preventing other users to try to change infrastructure at the same time.
 
 Change to the `infra` directory. You will find several files and folders:
 
@@ -18,7 +18,7 @@ Change to the `infra` directory. You will find several files and folders:
    * `public_ip` (folder): files to define a public ip
    * `resource-group` (folder): files to define a Resource Group provisioning
 
-\*The "prefix" must contain only alphabetical characters, because it is used for the name of the Azure Container Registry, and that only allows this kind of characters (no numbers, dashes or undescores).
+\*The "prefix" must contain only alphabetical characters, because it is used for the name of the Azure Container Registry, and that only allows this kind of characters (no numbers, dashes or underscores).
 
 ### Initializing Terraform and state storage
 
@@ -49,7 +49,7 @@ Provision the changes to infrastructure in your Azure account, use:
 $ terraform apply
 ```
 
-You will be shown the plan again, and asked for confirmation to continue. The provisioning process will last more than 10 minutes. At the beginnig of this process, the plan will be saved on the Azure storage created previously, and the file marked as 'locked', so anybody else using the same plan will be prevented to do changes to infrastructure until you finish.
+You will be shown the plan again, and asked for confirmation to continue. The provisioning process will last more than 10 minutes. At the beginning of this process, the plan will be saved on the Azure storage created previously, and the file marked as 'locked', so anybody else using the same plan will be prevented to do changes to infrastructure until you finish.
 
 At the end you will be shown an output like this:
 
@@ -97,7 +97,7 @@ _Improvement_: You could create the service principal using also Terraform, [exa
 
 _Improvement_: You could also provision a Log Analytics resource for the cluster, [example](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks).
 
-_Improvement_: Use workspaces to define different paramenters for a production and development kubernetes environment, [more info](https://www.terraform.io/docs/state/workspaces.html).
+_Improvement_: Use workspaces to define different parameters for a production and development Kubernetes environment, [more info](https://www.terraform.io/docs/state/workspaces.html).
 
 ---
 [Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  

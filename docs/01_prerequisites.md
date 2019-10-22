@@ -11,7 +11,7 @@ You will need to install the following tools:
 * [Azure Command Line Interface (CLI)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest): To create Azure resources, use Terraform with your Azure account, and retrieve credentials Kubernetes configuration.
 * [Terraform](https://www.terraform.io/downloads.html): To automatically provision infrastructure (resource group, managed Kubernetes cluster).
 * Docker ([linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/), [mac](https://docs.docker.com/docker-for-mac/install/), [win](https://docs.docker.com/docker-for-windows/install/)): Used by Skaffold to build and push images  .
-* [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/): Used by skaffold to control the cluster, we will also use it to inspect it from the command line.
+* [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/): Used by Skaffold to control the cluster, we will also use it to inspect it from the command line.
 * [Skaffold](https://skaffold.dev/docs/getting-started/#installing-skaffold): To deploy the microservices to the cluster.
 * [Helm](https://helm.sh/docs/using_helm/#installing-helm): To install the prometheus-operator Helm chart.
   * Windows: `choco install kubernetes-helm`
@@ -20,7 +20,7 @@ You will need to install the following tools:
 
 ### Clone the Hipster Shop repository
 
-Open a terminal in the root folder of this project, and execute this command to clone the Hipster Shop repository from Github:
+Open a terminal in the root folder of this project, and execute this command to clone the Hipster Shop repository from GitHub:
 
 ```
 git clone https://github.com/GoogleCloudPlatform/microservices-demo.git

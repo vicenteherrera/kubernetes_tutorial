@@ -9,7 +9,7 @@ To store credentials needed to Kubectl to log into your cluster, use:
 $ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s --overwrite
 ```
 
-### Optional: Examine kubernetes cluster
+### Optional: Examine Kubernetes cluster
 
 #### Kubectl context
 
@@ -33,7 +33,7 @@ You can deploy a web dashboard to inspect all the parameters of your cluster usi
 az aks browse --resource-group SysTest-k8s-resources --name SysTest-k8s
 ```
 
-A new browser window will open to the dashboard at http://127.0.0.1:8001 without having to enter aditional credentials. [More info at this link](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard).
+A new browser window will open to the dashboard at http://127.0.0.1:8001 without having to enter additional credentials. [More info at this link](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard).
 
 ![Kubernetes dashboard](../docs/img/kube_dashboard.png)
 
@@ -54,7 +54,7 @@ See: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboar
 
 We need to log in with the Docker client to our Azure Container Registry we created previously, so Skaffold can use it to push images to it.
 
-To do so, use the following command from the `infra` folder that retrieves the neccesary variables from the Terraform state.
+To do so, use the following command from the `infra` folder that retrieves the necessary variables from the Terraform state.
 
 ```
 $ docker login $(terraform output acr_uri) -u $(terraform output acr_user) -p $(terraform output acr_password)

@@ -4,7 +4,7 @@
 
 ### Installing Tiller, Kubernetes component of Helm
 
-You already installed the Helm local cliet in the Prerequisites step. But now that you have the Kubernetes cluster set up and kubectl configured to talk to it, we need also to install the cluster's component, called Tiller. [More info here](https://helm.sh/docs/using_helm/#installing-tiller).
+You already installed the Helm local client in the Prerequisites step. But now that you have the Kubernetes cluster set up and kubectl configured to talk to it, we need also to install the cluster's component, called Tiller. [More info here](https://helm.sh/docs/using_helm/#installing-tiller).
 
 To install Tiller in the current Kubernetes cluster configured with kubectl, use:
 
@@ -31,9 +31,9 @@ tiller-deploy-57f498469-prsfg           1/1     Running   0          58s
 tunnelfront-6f4cb4755b-wjfvw            1/1     Running   0          2d9h
 ```
 
-### Intalling prometheus-operator Helm chart
+### Installing prometheus-operator Helm chart
 
-Helm uses a packaging format called *charts*. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts are their Github repository at:
+Helm uses a packaging format called *charts*. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts are their GitHub repository at:
 https://github.com/helm/charts.git
 
 You can update the list of charts available using:
@@ -55,7 +55,7 @@ helm install --namespace monitoring --name prometheus stable/prometheus-operator
 
 We need to specify the _rbac.create=true_ variable for it to work in Azure, because it uses role-based access control (RBAC) to limit access to cluster resources.
 
-To check Prometheu's pods in the monitoring namespace use:
+To check Prometheus' pods in the monitoring namespace use:
 
 ```
 $ kubectl get pods --namespace monitoring
@@ -83,7 +83,7 @@ kubectl --namespace monitoring port-forward $POD_NAME 9090
 
 And visit http://localhost:9090
 
-### Accesing Grafana's dashboard and setting it up
+### Accessing Grafana's dashboard and setting it up
 
 Now we are going to set up Grafana.
 
@@ -122,7 +122,7 @@ _Improvement_: You can modify the prometheus-operator Helm chart to automaticall
 _Improvement_: Check [this alternative](http://www.allaboutwindowssl.com/2019/03/setup-prometheus-grafana-monitoring-on-azure-kubernetes-cluster-aks/
 ) to make Grafana use a random password on deployment.
 
-_Improvement_: Describe creating users in Grafana, binding the output to the public IP, and using a persistant storage.
+_Improvement_: Describe creating users in Grafana, binding the output to the public IP, and using a persistent storage.
 
 ---
 [Next step: 7. Terminate and free resources](../docs/98_free_resources.md)  

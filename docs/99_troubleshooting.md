@@ -1,6 +1,6 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## Apendix: Troubleshooting
+## Appendix: Troubleshooting
 
 ### One or more nodes with status 'CrashLoopBackOff'
 
@@ -121,7 +121,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/ma
 kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/podmonitor.crd.yaml
 ```
 
-Wait a copule of seconds, then install the chart with:
+Wait a couple of seconds, then install the chart with:
 
 ```
 helm install --name prometheus stable/prometheus-operator --set prometheusOperator.createCustomResource=false  --set rbac.create=true

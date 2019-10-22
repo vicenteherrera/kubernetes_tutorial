@@ -40,7 +40,7 @@ At the end of the execution, the result environment variables will be shown.
 
 We will need several secret values stored, but we don't want them to be stored on a file that can be stolen or uploaded to an unsafe place. To store them securely, we will create an Azure Key Vault resource.
 
-To create a Key Vault resource named "SysTest-Vault" in resoure group "tstate" on _westeurope_ location, use:
+To create a Key Vault resource named "SysTest-Vault" in resource group "tstate" on _westeurope_ location, use:
 
 ```
 az keyvault create --name "SysTest-Vault" --resource-group "tstate" --location westeurope
