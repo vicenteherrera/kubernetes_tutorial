@@ -2,24 +2,41 @@
 
 ## 3. Provision infrastructure with Terraform
 
-Change to the `infra` directory and initialize Terraform's Azure driver:
+We will store the infrastructure state in the volume storage created previously, so any other person trying to work with this infrastructure will have access to it. Also when executing changes, the state will be locked, preveting other users to try to change infrastructure at the same time.
 
-You can edit the  `terraform.tfvars` to select a different availability zone, or name prefix for resources. But the prefix must contain only alphabetical characters, because it is used for the name of the Azure Container Registry, and that only allows this kind of characters (no numbers, dashes or undescores).
+Change to the `infra` directory. You will find several files and folders:
+
+ * backend.tfconfig: parameters for the resource group and volume name that will store the infrastructure state
+ * terraform.tfvars: input values to define a prefix\* for all resource names, and default datacenter location
+ * variables.tf : inputs definitions, including the ones for the terraform.tfvars values, and the service principal id and secret.
+ * main.tf: main Terraform file that references all other modules
+ * modules (folder)
+   * acr (folder): files to define an Azure Container Registry provisioning
+   * aks (folder): files to define an Azure Kubernetes Service provisioning
+   * load_balancer: files to define load balancer
+   * public_ip: files to define a public ip
+   * resource-group (folder): files to define a Resource Group provisioning
+
+\*The "prefix" must contain only alphabetical characters, because it is used for the name of the Azure Container Registry, and that only allows this kind of characters (no numbers, dashes or undescores).
+
+To continue you must already have logged in with the Azure CLI, and have the environment variable _ARM_ACCESS_KEY_ set up as explained earlier.
+
+Initialize Terraform's Azure driver using the backend.tfconfig backend configuration options to use the Azure storage for the infrastructure state, using:
 
 ```
 $ cd infra
 $ terraform init -backend-config=backend.tfconfig
 ```
 
-Test the execution plan:
+We can test the execution plan without making any change to infrastructure with:
 
 ```
 $ terraform plan
 ```
 
-The change that should be performed will be shown.
+To continue you must have defined the environment variables _TF_VAR_client_id_ and _TF_VAR_client_secret_ as explanied previously.
 
-To run the execution plan use:
+Provision the changes to infrastructure in your Azure account, use:
 
 ```
 $ terraform apply
@@ -53,21 +70,24 @@ id = /subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourcegroups/SysTest
 kube_config = <sensitive>
 resource_group_name = SysTest-k8s-resources
 ```
+The output variables are written inside the Terraform state object in the remote Azure storage. That storage is encrypted at rest, and can only be accessed using the Azure CLI or the Azure Portal with your login credentials.
 
-//TODO:
+You will now have on your Azure account:
+ * An storage group, that holds the rest of the resources
+ * An Azure Container Registry to store the images of the microservices containers
+ * A public IP assignment
+ * A load balancer assigned to that public IP
+ * An Azure Kubernetes Service managed cluster, using the previous load balancer
 
+You could omit the creation of the public IP and load balancer, as those resources would be automatically provisioned for your cluster. But when you provision them in an explicit way, if you later remove the Kubernetes cluster to replace it for a different one, you will maintain the same IP address.
 
-* Stablish variable types as string
-* "Example"
-* Tags
+Several aditional resource groups will appear on your Azure account, that are automatically created to be able to serve your Kubernetes cluster requirements.
 
-### Improvements
+_Improvement_: You could create the service principal using also Terraform. [example](https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa)
 
-You could create the service principal using also Terraform. [example](https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa)
+_Improvement_: You could also provision a Log Analytics resource for the cluster. [example](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks)
 
-You could also create a Log Analytics resource for the cluster. [example](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks)
-
-Use __workspaces__ to define different paramenters for a production and development kubernetes environment ([more info](https://www.terraform.io/docs/state/workspaces.html) )
+_Improvement_: Use __workspaces__ to define different paramenters for a production and development kubernetes environment ([more info](https://www.terraform.io/docs/state/workspaces.html) )
 
 ---
 [Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  

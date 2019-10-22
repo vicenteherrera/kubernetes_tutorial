@@ -4,11 +4,9 @@
 
 This procedure should be done only once, even if you delete the cluster and destroy the infrastructure resources.
 
-
-
 ### Create Storage for Terraform to store plan
 
-Execute the following script to create a Resource Group called "tstate", and inside it, an storage with random name.
+We will use an storage volume in Azure to store the infrastructure state created with Terraform later. To do this, execute the following script and it will create on _westeurope_ location a Resource Group called "tstate", and inside it, an storage with "tstatesystest" name.
 
 For more information, see: https://docs.microsoft.com/en-us/azure/terraform/terraform-backend
 
@@ -40,14 +38,15 @@ At the end of the execution, the result environment variables will be shown.
 
 ### Create a Key Vault and store secrets
 
+We will need several secret values stored, but we don't want them to be stored on a file that can be stolen or uploaded to an unsafe place. To store them securely, we will create an Azure Key Vault resource.
 
-Create a Key Vault in resoure group "tstate"
+To create a Key Vault resource named "SysTest-Vault" in resoure group "tstate" on _westeurope_ location, use:
 
 ```
-az keyvault create --name "SysTest-Vault" --resource-group "tstate" --location eastus
+az keyvault create --name "SysTest-Vault" --resource-group "tstate" --location westeurope
 ```
 
-Store access key to the volume in the Key Vault:
+To store the access key of the volume in the Key Vault:
 
 ```
 az keyvault secret set --vault-name "SysTest-Vault" --name "tstateAccessKey" --value $ACCOUNT_KEY
@@ -59,7 +58,7 @@ Any time later you need to retrieve this value, you cand do so after having logg
 az keyvault secret show --name "tstateAccessKey" --vault-name "SysTest-Vault" --query value -o tsv
 ```
 
-Optional: You can also reference this secret on Azure using its unique URI:  
+_Optional_: You can also reference this secret on Azure using its unique URI:  
 https://SysTest-Vault.vault.azure.net/secrets/tstateAccessKey 
 
 
@@ -69,7 +68,7 @@ A Service Principal is like a new user that we create to grant permissions to on
 
 AKS needs a service principal to be able to create virtual machines for the Kubernetes cluster infrastructure.
 
-To create a new Service Principal named ServPrincipalAKS, use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown in the previous command's outputs.
+To create a new Service Principal named "ServPrincipalAKS", use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown when you log in with `az login`.
 
 ```
 $ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" --name ServPrincipalAKS

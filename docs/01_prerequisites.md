@@ -2,6 +2,8 @@
 
 ## 1. Prerequisites
 
+In this section we will install the required software, create an Azure account, and use the Azure CLI to log in and enabled several resource providers.
+
 ### Install software prerequisites
 
 You will need to install the following tools:
@@ -50,14 +52,15 @@ You have logged in. Now let us find all the subscriptions to which you have acce
 ```
 
 Now your `az` command line instructions will use your account credentials.
+We will later need the "id" value shown when you log in.
 
-Optional: You can check any time what account you are logged in and this information with:
+_Optional_: You can check any time what account you are logged in and this information with:
 
 ```
 $ az account show
 ```
 
-You may need to register the use of the following providers with your Azure account to create the kind of resources we are going to use.
+You may need to register the use of the following providers with your Azure account to create the kind of resources we are going to use. They are needed to create new resources related to those providers.
 
 ```
 az provider register -n Microsoft.Network
