@@ -47,7 +47,7 @@ helm search stable/prometheus-operator --versions --version=">=6" --col-width=30
 ```
 We are going to install the prometheus-operator Helm chart. It is a complex packages that is beyond the scope of what we can explain here, read [its documentation for more information](https://github.com/coreos/prometheus-operator). Let's summarize that is includes Prometheus to gather cluster's metrics, Grafana to display a dashboard of those metrics, PrometheusRule to define alerting and recording rules, and Alertmanager 
 
-Install the prometheus-operator Helm chart, with the name __prometheus__ in a namespace named __monitoring__. 
+If you just installed Tiller, wait a few seconds, and then install the prometheus-operator Helm chart, with the name __prometheus__ in a namespace named __monitoring__. 
 
 ```
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
@@ -103,14 +103,14 @@ export NODE_GRAF=$(kubectl get pods --namespace monitoring -l "app=grafana,relea
 
 Now we open a proxy to Grafana's  dashboard, and use __admin__ username and the previous password to log in.
 ```
-$ kubectl --namespace monitoring port-forward $POD_NAME 3000
+$ kubectl --namespace monitoring port-forward $NODE_GRAF 3000
 ```
 
 And visit http://localhost:3000
 
 We need to define a dashboard for Grafana to represent Prometheus metrics. You can browse Grafana dashboards definitions at https://grafana.com/dashboards. We will use https://grafana.com/grafana/dashboards/1860.
 
-Click import, load dashboard definition id 1860, and select Prometheus as the data source.
+Click import, load dashboard definition id _1860_, and select Prometheus as the data source.
 
 
 
