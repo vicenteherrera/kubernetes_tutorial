@@ -4,4 +4,8 @@ resource "azurerm_container_registry" "example" {
   location                 = "${var.location}"
   sku                      = "Standard"
   admin_enabled            = true
+  tags = {
+    Environment = "Development"
+    Creator = "Terraform"
+  }
 }
