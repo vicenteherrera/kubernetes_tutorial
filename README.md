@@ -34,7 +34,7 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 * [3. Provision infrastructure with Terraform](./docs/03_infra_terraform.md)
 * [4. Get credentials](./docs/04_get_credentials.md)
 * [5. Create cluster with Skaffold](./docs/05_cluster_skaffold.md)
-* [6. Create cluster with Skaffold](./docs/06_helm.md)
+* [6. Installing Prometheus and Grafana using Helm](./docs/06_helm.md)
 * [7. Terminate and free resources](./docs/98_free_resources.md)
 * [Appendix: Troubleshooting](./docs/99_troubleshooting.md)
 
