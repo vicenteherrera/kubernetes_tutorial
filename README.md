@@ -20,13 +20,13 @@ We will also deploy Prometheus as a metric extractor and Grafana as a visualizat
 
 This instructions comes with some __optional__, __alternative__ and __improvement__ parts. You can skip them if you like for a straigh forward procedure. The improvements will suggest additional task that you could investigate on your own to improve this excercise.
 
-We will assume you work with a *bash* environment. 
+We will assume we use a *bash* shell environment. 
 
 If you are using Windows, most of the explanations here could be used in cmd.exe, but you will achieve full compatibily by using [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-### Contents
+*Improvement:* Adapt the explanations and scripts to be able to use them from Windows's cmd.exe or Powershell.
 
-Follow these steps:
+### Contents
 
 * [1. Installing prerequisites](./docs/01_prerequisites.md)
 * [2. Initial Azure setup](./docs/02_setup_az_sp.md)
