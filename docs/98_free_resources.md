@@ -42,4 +42,5 @@ $ terraform destroy -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT
 
 ---
 [Next step: Appendix Troubleshooting](../docs/99_troubleshooting.md)  
+
 [Previous step: 6. Create cluster with Skaffold](../docs/06_helm.md)

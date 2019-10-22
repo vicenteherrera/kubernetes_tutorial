@@ -112,5 +112,6 @@ _Improvement_: You could set up a CI/CD pipeline in Azure Devops portal likend t
 
 ---
 [Next step: 6. Installing Prometheus and Grafana using Helm](../docs/06_helm.md)  
+
 [Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md)
 

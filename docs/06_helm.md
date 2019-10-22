@@ -123,5 +123,6 @@ _Improvement_: Describe creating users in Grafana, binding the output to the pub
 
 ---
 [Next step: 7. Terminate and free resources](../docs/98_free_resources.md)  
+
 [Previous step: 5. Create cluster with Skaffold](../docs/05_cluster_skaffold.md)
 

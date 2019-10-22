@@ -78,4 +78,5 @@ az provider register -n Microsoft.ContainerService
 
 ---
 [Next step: 2. Initial Azure resources setup](../docs/02_setup_az_sp.md)  
+
 [Previous step: 0. Getting started](../README.md)

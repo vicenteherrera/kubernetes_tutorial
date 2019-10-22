@@ -137,5 +137,6 @@ ARM_SUBSCRIPTION_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX # Obtain it from the ac
 
 ---
 [Next step: 3. Provision infrastructure with Terraform](../docs/03_infra_terraform.md)  
+
 [Previous step: 1. Prerequisites](../docs/01_prerequisites.md)  
 

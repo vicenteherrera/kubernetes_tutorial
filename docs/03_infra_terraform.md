@@ -101,5 +101,6 @@ _Improvement_: Use workspaces to define different paramenters for a production a
 
 ---
 [Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  
+
 [Previous step: 2. Initial Azure resources setup](../docs/02_setup_az_sp.md)
 
