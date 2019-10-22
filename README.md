@@ -39,4 +39,4 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 * [Appendix: Troubleshooting](./docs/99_troubleshooting.md)
 
 ---
-[Next step: 1. Installing prerequisites](./doc/01_prerequisites.md)  
+[Next step: 1. Installing prerequisites](./docs/01_prerequisites.md)  
