@@ -112,6 +112,9 @@ We need to define a dashboard for Grafana to represent Prometheus metrics. You c
 
 Click import, load dashboard definition id _1860_, and select Prometheus as the data source.
 
+You should see the dashboard's instant metrics right away, and graphs will slowly start to display historical values.
+
+![Grafana dashboard for Prometheus](../docs/img/grafana.png)
 
 
 _Improvement_: You can modify the prometheus-operator Helm chart to automatically deploy the Grafana dashboard configured. See [this tutorial](https://medium.com/@chris_linguine/how-to-monitor-your-kubernetes-cluster-with-prometheus-and-grafana-2d5704187fc8).
