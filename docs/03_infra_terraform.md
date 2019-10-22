@@ -87,15 +87,17 @@ You will now have on your Azure account:
  * A load balancer assigned to that public IP
  * An Azure Kubernetes Service managed cluster, using the previous load balancer
 
+![Azure infrastructure](../docs/img/azure_infra.png)
+
 You could omit the creation of the public IP and load balancer, as those resources would be automatically provisioned for your cluster. But when you provision them in an explicit way, if you later remove the Kubernetes cluster to replace it for a different one, you will maintain the same IP address.
 
 Several aditional resource groups will appear on your Azure account, that are automatically created to be able to serve your Kubernetes cluster requirements.
 
-_Improvement_: You could create the service principal using also Terraform. [example](https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa)
+_Improvement_: You could create the service principal using also Terraform, [example](https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa).
 
-_Improvement_: You could also provision a Log Analytics resource for the cluster. [example](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks)
+_Improvement_: You could also provision a Log Analytics resource for the cluster, [example](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks).
 
-_Improvement_: Use __workspaces__ to define different paramenters for a production and development kubernetes environment ([more info](https://www.terraform.io/docs/state/workspaces.html) )
+_Improvement_: Use workspaces to define different paramenters for a production and development kubernetes environment, [more info](https://www.terraform.io/docs/state/workspaces.html).
 
 ---
 [Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  

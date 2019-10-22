@@ -8,7 +8,7 @@ In this section we will install the required software, create an Azure account, 
 
 You will need to install the following tools:
 
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest): To create Azure resources, use Terraform with your Azure account, and retrieve credentials Kubernetes configuration.
+* [Azure Command Line Interface (CLI)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest): To create Azure resources, use Terraform with your Azure account, and retrieve credentials Kubernetes configuration.
 * [Terraform](https://www.terraform.io/downloads.html): To automatically provision infrastructure (resource group, managed Kubernetes cluster).
 * Docker ([linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/), [mac](https://docs.docker.com/docker-for-mac/install/), [win](https://docs.docker.com/docker-for-windows/install/)): Used by Skaffold to build and push images  .
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/): Used by skaffold to control the cluster, we will also use it to inspect it from the command line.
@@ -18,6 +18,13 @@ You will need to install the following tools:
   * MacOs: `brew install kubernetes-helm`
   * Linux: `sudo snap install helm --classic`
 
+### Clone the Hipster Shop repository
+
+Open a terminal in the root folder of this project, and execute this command to clone the Hipster Shop repository from Github:
+
+```
+git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+```
 
 ### Create and Azure account
 

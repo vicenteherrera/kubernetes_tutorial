@@ -14,7 +14,7 @@ The original Hipster Shop demo is intended for use in a local kubernetes cluster
 
 We will also deploy Prometheus as a metric extractor and Grafana as a visualization tool for those metrics into the Kubernetes cluster using Helm.
 
-![general_diagram](./docs/img/general_diagram.jpg)
+![general_diagram](./docs/img/general_diagram.png)
 
 ### How to use
 

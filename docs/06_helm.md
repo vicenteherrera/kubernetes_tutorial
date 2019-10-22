@@ -2,23 +2,24 @@
 
 ## 6. Installing Prometheus and Grafana using Helm
 
-### Installing Helm client
+### Installing Tiller, Kubernetes component of Helm
 
+You already installed the Helm local cliet in the Prerequisites step. But now that you have the Kubernetes cluster set up and kubectl configured to talk to it, we need also to install the cluster's component, called Tiller. [More info here](https://helm.sh/docs/using_helm/#installing-tiller).
 
-
-
-### Installing Tiller, Kubernetes component
-
-https://helm.sh/docs/using_helm/#installing-tiller
+To install Tiller in the current Kubernetes cluster configured with kubectl, use:
 
 ```
 helm init --history-max 200
 ```
 
+It is a good practice to limit the history maximum number of items, as it can consume a big amount of space.
+
+
 To check that Tiller pod is up and running use:
 
 ```
 $kubectl get pods --namespace kube-system
+
 NAME                                    READY   STATUS    RESTARTS   AGE
 coredns-696c4d987c-d4ssp                1/1     Running   0          2d9h
 coredns-696c4d987c-wmwwj                1/1     Running   0          2d9h
@@ -30,7 +31,7 @@ tiller-deploy-57f498469-prsfg           1/1     Running   0          58s
 tunnelfront-6f4cb4755b-wjfvw            1/1     Running   0          2d9h
 ```
 
-Helm uses a packaging format called charts. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts are their Github repository at:
+Helm uses a packaging format called *charts*. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts are their Github repository at:
 https://github.com/helm/charts.git
 
 You can update the list of charts available using:
@@ -42,14 +43,15 @@ To search for a chart, you can use the search command:
 ```
 helm search stable/prometheus-operator --versions --version=">=6" --col-width=30
 ```
+We are going to install the prometheus-operator Helm chart. It is a complex packages that is beyond the scope of what we can explain here, read [its documentation for more information](https://github.com/coreos/prometheus-operator). Let's summarize that is includes Prometheus to gather cluster's metrics, Grafana to display a dashboard of those metrics, PrometheusRule to define alerting and recording rules, and Alertmanager 
 
-We are going to install the prometheus-operator Helm chart, with the name __prometheus__ in a namespace named __monitoring__
+Install the prometheus-operator Helm chart, with the name __prometheus__ in a namespace named __monitoring__. 
 
 ```
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
 ```
 
-We need to specify the rbac.create=true variable for it to work in Azure.
+We need to specify the rbac.create=true variable for it to work in Azure, because it uses role-based access control (RBAC) to limit access to cluster resources.
 
 To check Prometheu's pods in the monitoring namespace use:
 
@@ -110,44 +112,10 @@ https://grafana.com/dashboards
 
 https://grafana.com/grafana/dashboards/1860
 
-### Delete Prometheus and Grafana resources
+_Improvement_: You can modify the prometheus-operator Helm chart to automatically deploy the Grafana dashboard configured. See [this tutorial](https://medium.com/@chris_linguine/how-to-monitor-your-kubernetes-cluster-with-prometheus-and-grafana-2d5704187fc8).
 
-helm delete --purge prometheus
-
-helm del --purge prometheus
-
-kubectl delete crd prometheuses.monitoring.coreos.com
-kubectl delete crd prometheusrules.monitoring.coreos.com
-kubectl delete crd servicemonitors.monitoring.coreos.com
-kubectl delete crd podmonitors.monitoring.coreos.com
-kubectl delete crd alertmanagers.monitoring.coreos.com
-
-### References
-
-https://medium.com/@chris_linguine/how-to-monitor-your-kubernetes-cluster-with-prometheus-and-grafana-2d5704187fc8
-
-https://github.com/helm/charts/tree/master/stable/prometheus-operator
-
-https://medium.com/faun/trying-prometheus-operator-with-helm-minikube-b617a2dccfa3
-
-https://sysdig.com/blog/kubernetes-monitoring-prometheus-operator-part3/
-
-https://www.alibabacloud.com/blog/kubernetes-cluster-monitoring-using-prometheus_594722
-
-https://sysdig.com/blog/prometheus-metrics/
-
-https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/
-
-https://gardener.cloud/050-tutorials/content/howto/prometheus/
-
-https://gardener.cloud/050-tutorials/content/howto/helm/
-
-
-Using Azure and two helm charts:
-
-http://www.allaboutwindowssl.com/2019/03/setup-prometheus-grafana-monitoring-on-azure-kubernetes-cluster-aks/
-
-
+_Improvement_: Check [this alternative](http://www.allaboutwindowssl.com/2019/03/setup-prometheus-grafana-monitoring-on-azure-kubernetes-cluster-aks/
+) to make Grafana use a random password on deployment.
 
 ---
 [Next step: 7. Terminate and free resources](../docs/98_free_resources.md)  

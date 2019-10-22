@@ -2,20 +2,43 @@
 
 ## 7. Tear down the cluster and infrastructure
 
-Don't forget to tear down the Kubernetes cluster when you have finished experimenting with it. As the load test tool will start to generate simulated traffic inmediatly, it will lead to expensive charges if left running.
+### Delete Prometheus and Grafana resources
+
+To delete the prometheus-operator resources, use
 
 ```
+helm delete --purge prometheus
+```
+
+prometheus-operator defines some custom resource definitions (CRDs), that have to be deleted manually:
+
+```
+kubectl delete crd prometheuses.monitoring.coreos.com
+kubectl delete crd prometheusrules.monitoring.coreos.com
+kubectl delete crd servicemonitors.monitoring.coreos.com
+kubectl delete crd podmonitors.monitoring.coreos.com
+kubectl delete crd alertmanagers.monitoring.coreos.com
+```
+
+### Delete microservices resources
+
+Don't forget to tear down the Kubernetes cluster when you have finished experimenting with it. As the load test tool will start to generate simulated traffic inmediatly, it will lead to expensive charges if left running.
+
+From the `microservices-demo` folder, run:
+```
+$ cd microservices-demo
 $ skaffold delete
 ```
 
-To also delete the Azure infrastructure resources, use:
+### Destroy infrastructure elements
+
+To also destroy the Azure infrastructure elements, from the `infra` folder use:
 
 ```
 $ cd ..
 $ cd infra
 $ terraform destroy -var client_id=$ARM_CLIENT_ID -var client_secret=$ARM_CLIENT_SECRET
 ```
-
 
 ---
 [Next step: Appendix Troubleshooting](../docs/99_troubleshooting.md)  
