@@ -28,6 +28,7 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 
 ### Contents
 
+* [0. Getting started](./README.md)
 * [1. Installing prerequisites](./docs/01_prerequisites.md)
 * [2. Initial Azure setup](./docs/02_setup_az_sp.md)
 * [3. Provision infrastructure with Terraform](./docs/03_infra_terraform.md)
