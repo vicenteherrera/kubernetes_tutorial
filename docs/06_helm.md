@@ -119,6 +119,8 @@ _Improvement_: You can modify the prometheus-operator Helm chart to automaticall
 _Improvement_: Check [this alternative](http://www.allaboutwindowssl.com/2019/03/setup-prometheus-grafana-monitoring-on-azure-kubernetes-cluster-aks/
 ) to make Grafana use a random password on deployment.
 
+_Improvement_: Describe creating users in Grafana, binding the output to the public IP, and using a persistant storage.
+
 ---
 [Next step: 7. Terminate and free resources](../docs/98_free_resources.md)  
 [Previous step: 5. Create cluster with Skaffold](../docs/05_cluster_skaffold.md)
