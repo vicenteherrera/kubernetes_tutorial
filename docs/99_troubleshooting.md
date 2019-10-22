@@ -94,6 +94,39 @@ Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token:
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
 ```
 
+### Trying to proxy Prometheus web console gives error "pod is not running"
 
+Error message: `error: unable to forward port because pod is not running. Current status=Pending`
+
+If you list the pods in the monitoring namespace, the last one is pending:
+
+```
+$ kubectl get pods --namespace monitoring
+
+NAME                                                     READY   STATUS    RESTARTS   AGE
+alertmanager-prometheus-prometheus-oper-alertmanager-0   2/2     Running   0          6m32s
+prometheus-grafana-5c9cdb95fd-rr8gk                      2/2     Running   0          7m7s
+prometheus-kube-state-metrics-7488ddf754-rbf7w           1/1     Running   0          7m7s
+prometheus-prometheus-node-exporter-pf9zn                1/1     Running   0          7m7s
+prometheus-prometheus-oper-operator-7c8567584d-f5h4t     2/2     Running   0          7m7s
+prometheus-prometheus-prometheus-oper-prometheus-0       0/3     Pending   0          6m22s
+```
+
+There is a bug in Helm that prevents it to create the CRD before using them. Try first creating them manually:
+```
+kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/alertmanager.crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/prometheus.crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/prometheusrule.crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/servicemonitor.crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/podmonitor.crd.yaml
+```
+
+Wait a copule of seconds, then install the chart with:
+
+```
+helm install --name prometheus stable/prometheus-operator --set prometheusOperator.createCustomResource=false  --set rbac.create=true
+```
+
+See [this for more information](https://github.com/helm/charts/tree/master/stable/prometheus-operator#helm-fails-to-create-crds).
 ---
 [7. Terminate and free resources](../doc/98_free_resources.md)  
