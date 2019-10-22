@@ -6,18 +6,21 @@ We will store the infrastructure state in the volume storage created previously,
 
 Change to the `infra` directory. You will find several files and folders:
 
- * backend.tfconfig: parameters for the resource group and volume name that will store the infrastructure state
- * terraform.tfvars: input values to define a prefix\* for all resource names, and default datacenter location
- * variables.tf : inputs definitions, including the ones for the terraform.tfvars values, and the service principal id and secret.
- * main.tf: main Terraform file that references all other modules
- * modules (folder)
-   * acr (folder): files to define an Azure Container Registry provisioning
-   * aks (folder): files to define an Azure Kubernetes Service provisioning
-   * load_balancer: files to define load balancer
-   * public_ip: files to define a public ip
-   * resource-group (folder): files to define a Resource Group provisioning
+ * `backend.tfconfig`: parameters for the resource group and volume name that will store the infrastructure state
+ * `terraform.tfvars`: input values to define a prefix\* for all resource names, and default datacenter location
+ * `variables.tf`: inputs definitions, including the ones for the terraform.tfvars values, and the service principal id and secret.
+ * `main.tf`: main Terraform file that references all other modules
+ * `outputs.tf`: output variable definitions
+ * `modules` (folder)
+   * `acr` (folder): files to define an Azure Container Registry provisioning
+   * `aks` (folder): files to define an Azure Kubernetes Service provisioning
+   * `load_balancer` (folder): files to define load balancer
+   * `public_ip` (folder): files to define a public ip
+   * `resource-group` (folder): files to define a Resource Group provisioning
 
 \*The "prefix" must contain only alphabetical characters, because it is used for the name of the Azure Container Registry, and that only allows this kind of characters (no numbers, dashes or undescores).
+
+### Initializing Terraform and state storage
 
 To continue you must already have logged in with the Azure CLI, and have the environment variable _ARM_ACCESS_KEY_ set up as explained earlier.
 
@@ -28,11 +31,15 @@ $ cd infra
 $ terraform init -backend-config=backend.tfconfig
 ```
 
+### Testing execution plan
+
 We can test the execution plan without making any change to infrastructure with:
 
 ```
 $ terraform plan
 ```
+
+### Provisioning the infrastructure
 
 To continue you must have defined the environment variables _TF_VAR_client_id_ and _TF_VAR_client_secret_ as explanied previously.
 
@@ -70,7 +77,8 @@ id = /subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourcegroups/SysTest
 kube_config = <sensitive>
 resource_group_name = SysTest-k8s-resources
 ```
-The output variables are written inside the Terraform state object in the remote Azure storage. That storage is encrypted at rest, and can only be accessed using the Azure CLI or the Azure Portal with your login credentials.
+
+Some of the output variable are hidden because they were marked as sensitive, but all of their values have been written inside the Terraform state object in the remote Azure storage. That storage is encrypted at rest, and can only be accessed using the Azure CLI or the Azure Portal with your login credentials, or using the ARM_ACCESS_KEY environment variable that we retrieve from Key Vault also using Azure CLI and your login credentials.
 
 You will now have on your Azure account:
  * An storage group, that holds the rest of the resources
