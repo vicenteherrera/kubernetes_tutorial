@@ -1,0 +1,5 @@
+storage_account_name  = "tstatesystest"     # Storage Volume name
+container_name        = "tstate"            # Resource Group name
+key                   = "terraform.tfstate" # Do not change this
+
+# You must provide the access key in a variable ARM_ACCESS_KEY

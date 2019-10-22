@@ -3,13 +3,8 @@ provider "azurerm" {
 }
 
 terraform {
-  backend "azurerm" {
-    storage_account_name  = "tstatesystest"
-    container_name        = "tstate"
-    key                   = "terraform.tfstate"
-  }
+  backend "azurerm" {}
 }
-
 
 
 module "resource_group" {
