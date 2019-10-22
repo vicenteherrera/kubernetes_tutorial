@@ -54,6 +54,12 @@ kube_config = <sensitive>
 resource_group_name = SysTest-k8s-resources
 ```
 
+//TODO:
+
+
+* Stablish variable types as string
+* "Example"
+* Tags
 
 ### Improvements
 
@@ -65,5 +71,5 @@ Use __workspaces__ to define different paramenters for a production and developm
 
 ---
 [Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  
-[Previous step: 2. Initial Azure setup](../docs/02_setup_az_sp.md)
+[Previous step: 2. Initial Azure resources setup](../docs/02_setup_az_sp.md)
 

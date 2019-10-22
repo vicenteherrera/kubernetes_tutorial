@@ -29,8 +29,8 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 ### Contents
 
 * [0. Getting started](./README.md)
-* [1. Installing prerequisites](./docs/01_prerequisites.md)
-* [2. Initial Azure setup](./docs/02_setup_az_sp.md)
+* [1. Prerequisites](./docs/01_prerequisites.md)
+* [2. Initial Azure resources setup](./docs/02_setup_az_sp.md)
 * [3. Provision infrastructure with Terraform](./docs/03_infra_terraform.md)
 * [4. Get credentials](./docs/04_get_credentials.md)
 * [5. Create cluster with Skaffold](./docs/05_cluster_skaffold.md)
@@ -39,4 +39,4 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 * [Appendix: Troubleshooting](./docs/99_troubleshooting.md)
 
 ---
-[Next step: 1. Installing prerequisites](./docs/01_prerequisites.md)  
+[Next step: 1. Prerequisites](./docs/01_prerequisites.md)  

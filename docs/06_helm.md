@@ -4,17 +4,8 @@
 
 ### Installing Helm client
 
-https://helm.sh/docs/using_helm/#installing-helm
 
 
-Windows
-`choco install kubernetes-helm`
-
-MacOs
-`brew install kubernetes-helm`
-
-Linux
-`sudo snap install helm --classic`
 
 ### Installing Tiller, Kubernetes component
 
