@@ -2,6 +2,16 @@ provider "azurerm" {
   version = "~> 1.34"
 }
 
+terraform {
+  backend "azurerm" {
+    storage_account_name  = "tstatesystest"
+    container_name        = "tstate"
+    key                   = "terraform.tfstate"
+  }
+}
+
+
+
 module "resource_group" {
   source              = "./modules/resource_group"
   resource_group_name = "${var.prefix}-k8s-resources"

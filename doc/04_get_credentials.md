@@ -4,16 +4,15 @@
 
 ### Get Kubectl credentials
 
-Alternative 1. Using Azure-cli:
+Using Azure-cli:
 ```
 $ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s --overwrite
 ```
 
-Alternative 2. Using Terraform output variables:
+Alternative: Using Terraform output variables:
 ```
 $ export KUBECONFIG="$(terraform output kube_config)"
 ```
-
 
 To later check which context you are connected to with kubectl:
 

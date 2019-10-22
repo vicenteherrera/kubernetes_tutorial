@@ -14,30 +14,20 @@ $ terraform init
 Test the execution plan:
 
 ```
-$ terraform plan -out=tfplan
+$ terraform plan
 ```
 
-We store the generated plan, so if once deployed we change the content of the Terraform files, we still know how to destroy what has been created.
+The change that should be performed will be shown.
 
-Run the execution plan using credetials for the service principal:
+To run the execution plan use:
 
 ```
-$ terraform plan tfplan
-
-terraform apply tfplan
-module.resource_group.azurerm_resource_group.example: Creating...
-module.resource_group.azurerm_resource_group.example: Creation complete after 1s [id=/subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/SysTest-k8s-resources]
-module.public_ip.azurerm_public_ip.example: Creating...
-module.acr.azurerm_container_registry.example: Creating...
-module.aks.azurerm_kubernetes_cluster.example: Creating...
-module.public_ip.azurerm_public_ip.example: Creation complete after 4s [id=/subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/SysTest-k8s-resources/providers/Microsoft.Network/publicIPAddresses/SysTest-PublicIPForLB]
-module.load_balancer.azurerm_lb.example: Creating...
-module.acr.azurerm_container_registry.example: Creation complete after 5s [id=/subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/SysTest-k8s-resources/providers/Microsoft.ContainerRegistry/registries/SysTestAcr]
-module.load_balancer.azurerm_lb.example: Creation complete after 1s [id=/subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/SysTest-k8s-resources/providers/Microsoft.Network/loadBalancers/SysTest-LoadBalancer]
-module.aks.azurerm_kubernetes_cluster.example: Still creating... [10s elapsed]
-module.aks.azurerm_kubernetes_cluster.example: Still creating... [20s elapsed]
-...
+$ terraform apply
 ```
+
+You will be shown the plan again, and asked for confirmation to continue. The provisioning process will last more than 10 minutes. At the beginnig of this process, the plan will be saved on the Azure storage created previously, and the file marked as 'locked', so anybody else using the same plan will be prevented to do changes to infrastructure until you finish.
+
+At the end you will be shown an output like this:
 
 ```
 ...
@@ -58,7 +48,7 @@ acr_user = SysTestAcr
 client_certificate = <sensitive>
 client_key = <sensitive>
 cluster_ca_certificate = <sensitive>
-host = https://systest-k8s-70eecd11.hcp.westeurope.azmk8s.io:443
+host = https://systest-k8s-XXXX.hcp.westeurope.azmk8s.io:443
 id = /subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourcegroups/SysTest-k8s-resources/providers/Microsoft.ContainerService/managedClusters/SysTest-k8s
 kube_config = <sensitive>
 resource_group_name = SysTest-k8s-resources

@@ -38,7 +38,7 @@ You have logged in. Now let us find all the subscriptions to which you have acce
 
 Now you'r `az` command line instructions will use your account credentials.
 
-You can check any time what account you are logged in and this information with:
+Optional: You can check any time what account you are logged in and this information with:
 
 ```
 $ az account show
@@ -53,13 +53,68 @@ az provider register -n Microsoft.Compute
 az provider register -n Microsoft.ContainerService
 ```
 
+### Create Storage for Terraform to store plan
+
+Execute the following script to create a Resource Group called "tstate", and inside it, an storage with random name.
+
+For more information, see: https://docs.microsoft.com/en-us/azure/terraform/terraform-backend
+
+```
+#!/bin/bash
+
+RESOURCE_GROUP_NAME=tstate
+STORAGE_ACCOUNT_NAME=tstatesystest
+CONTAINER_NAME=tstate
+
+# Create resource group
+az group create --name $RESOURCE_GROUP_NAME --location eastus
+
+# Create storage account
+az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
+
+# Get storage account key
+ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query [0].value -o tsv)
+
+# Create blob container
+az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key $ACCOUNT_KEY
+
+echo "storage_account_name: $STORAGE_ACCOUNT_NAME"
+echo "container_name: $CONTAINER_NAME"
+echo "access_key: $ACCOUNT_KEY"
+```
+
+At the end of the execution, the result environment variables will be shown.
+
+### Create a Key Vault and store secrets
+
+
+Create a Key Vault in resoure group "tstate"
+
+```
+az keyvault create --name "SysTest-Vault" --resource-group "tstate" --location eastus
+```
+
+Store access key to the volume in the Key Vault:
+
+```
+az keyvault secret set --vault-name "SysTest-Vault" --name "tstateAccessKey" --value $ACCOUNT_KEY
+```
+
+Any time later you need to retrieve this value, you cand do so after having logged in with Azure CLI, using:
+
+```
+az keyvault secret show --name "tstateAccessKey" --vault-name "SysTest-Vault" --query value -o tsv
+```
+
+Optional: You can also reference this secret on Azure using its unique URI:  
+https://SysTest-Vault.vault.azure.net/secrets/tstateAccessKey 
+
+
 ### Create a Service Principal with the command line
 
 A Service Principal is like a new user that we create to grant permissions to only do what we need it to do. That way we are not using our user with owner role. 
 
 AKS needs a service principal to be able to create virtual machines for the Kubernetes cluster infrastructure.
-
-//TODO: Create the Service Principal using Terraform, see https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa
 
 To create a new Service Principal named ServPrincipalAKS, use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown in the previous command's outputs.
 
@@ -78,16 +133,9 @@ Creating a role assignment under the scope of "/subscriptions/XXXXXXXX-XXXX-XXXX
 }
 ```
 
-We will store the client_id (appId) and client_secret (password) for the Service Principal in two environment variables, so Terraform can read them without having to pass them in each call or write them to a file.
+Optional: Without additional steps, the password (secret) can't be retrieved later, ([but you could reset it here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#reset-credentials) ).
 
-```
-TF_VAR_client_id="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-TF_VAR_client_secret="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-```
-
-The password (client secret) can't be retrieved later, but if you forget this credential, [reset it here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#reset-credentials).
-
-To retrieve the rest of the data from existing service principals created from the command line, use:
+Optional: To retrieve the rest of the data from existing service principals created from the command line, use:
 
 ```
 az ad sp list --display-name ServPrincipalAKS
@@ -99,28 +147,45 @@ If you didn't use a name for the service principal, its name will have the prefi
 az ad sp list --display-name azure-cli-
 ```
 
-
-
 **Alternative: Create a Service Principal using Azure Portal** 
 
 If you prefer to use the web interface, follow [these instructions](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal). Don't forget to [assign the application](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#assign-the-application-to-a-role) a [contributor role](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
 
-### Store security parameters in environment variables
+### Save Service Principal id and secret to Key Vault
 
-* ARM_CLIENT_ID: Service principal id
-* ARM_CLIENT_SECRET: Service principal password
-* ARM_TENANT_ID: Obtain it from the account info on login
-* ARM_SUBSCRIPTION_ID = Obtain it from the account info on login
+Take note of the appId (the id) and the password (the secret) for the service principal just created. We will store them in the Key Vault. 
 
+```
+az keyvault secret set --vault-name "SysTest-Vault" --name "spId" --value "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+az keyvault secret set --vault-name "SysTest-Vault" --name "spSecret" --value "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+```
 
+Now, when we want to retrieve them and the storage access key to environment variables that Terraform can use, without having the written down in any file, we use:
 
+```
+TF_VAR_client_id=$(az keyvault secret show --name "spId" --vault-name "SysTest-Vault" --query value -o tsv)
+TF_VAR_client_secret=$(az keyvault secret show --name "spSecret" --vault-name "SysTest-Vault" --query value -o tsv)
+ARM_ACCESS_KEY=$(az keyvault secret show --name "tstateAccessKey" --vault-name "SysTest-Vault" --query value -o tsv)
+```
+
+Those special variable names are expected by Terraform for those parameters. Remember, for those commands to work, we must have logged in with the Azure CLI first.
+
+### Alternative: Use the Service Principal to provision infrastructure instead of Azure CLI
+
+You could use the identity of the Service Principal to provision the whole infrastructure with Terraforn.
+If you set up the following environment variables, Terraform will use that identity instead of the Azure CLI logged in user.
+
+```
+ARM_CLIENT_ID=$(az keyvault secret show --name "spId" --vault-name "SysTest-Vault" --query value -o tsv)
+ARM_CLIENT_SECRET=$(az keyvault secret show --name "spSecret" --vault-name "SysTest-Vault" --query value -o tsv)
+ARM_TENANT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX # : Obtain it from the account info on login
+ARM_SUBSCRIPTION_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX # Obtain it from the account info on login
+```
 
 //TODO:
 
-* Create Service Principal with TF
-* Create public IP address
+* Create Service Principal with TF  https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa
 * Create monitoring and logging
-* Store secrets in key vault
 * Stablish variable types as string
 * Store Terraform state on Azure Store
 * Pipeline for CD/CI
