@@ -11,7 +11,7 @@ See [microservices-demo/docs/development-principles.md](https://github.com/Googl
 
 ## 0. Getting started
 
-This instructions comes with some optional and alternative parts. You can skip them if you like for a straigh forward procedure.
+This instructions comes with some __optional__, __alternative__ and __improvement__ parts. You can skip them if you like for a straigh forward procedure. The improvements will suggest additional task that you could investigate on your own to improve this excercise.
 
 We will assume you work with a *bash* environment. 
 

@@ -8,7 +8,7 @@ You can edit the  `terraform.tfvars` to select a different availability zone, or
 
 ```
 $ cd infra
-$ terraform init
+$ terraform init -backend-config=backend.tfconfig
 ```
 
 Test the execution plan:
@@ -53,6 +53,15 @@ id = /subscriptions/XXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourcegroups/SysTest
 kube_config = <sensitive>
 resource_group_name = SysTest-k8s-resources
 ```
+
+
+### Improvements
+
+You could create the service principal using also Terraform. [example](https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa)
+
+You could also create a Log Analytics resource for the cluster. [example](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks)
+
+Use __workspaces__ to define different paramenters for a production and development kubernetes environment ([more info](https://www.terraform.io/docs/state/workspaces.html) )
 
 ---
 [Next step: 4. Get credentials Kubectl and ACR](../doc/04_get_credentials.md)  

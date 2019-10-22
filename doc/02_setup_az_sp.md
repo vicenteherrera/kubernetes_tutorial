@@ -67,7 +67,7 @@ STORAGE_ACCOUNT_NAME=tstatesystest
 CONTAINER_NAME=tstate
 
 # Create resource group
-az group create --name $RESOURCE_GROUP_NAME --location eastus
+az group create --name $RESOURCE_GROUP_NAME --location westeurope
 
 # Create storage account
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
@@ -184,12 +184,10 @@ ARM_SUBSCRIPTION_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX # Obtain it from the ac
 
 //TODO:
 
-* Create Service Principal with TF  https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa
-* Create monitoring and logging
+
 * Stablish variable types as string
-* Store Terraform state on Azure Store
-* Pipeline for CD/CI
-* Param different environments instead of "example"
+* "Example"
+* Tags
 
 
 ---
