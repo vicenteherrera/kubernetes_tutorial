@@ -76,6 +76,8 @@ frontend-external   LoadBalancer   10.0.200.147   13.73.227.79   80:31971/TCP   
 Then open the http URL using "EXTERNAL-IP" address to see the shop's web page:
 http://13.73.227.79
 
+If it shows `<pending>`, you have to wait till the external IP has been provisioned. Sometimes it can take more than 5 minutes for it to be available.
+
 ![Hipster Shop's web page](../docs/img/shop.png)
 
 ### Developing and Skaffold
