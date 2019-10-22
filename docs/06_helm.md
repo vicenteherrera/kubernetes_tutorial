@@ -31,6 +31,8 @@ tiller-deploy-57f498469-prsfg           1/1     Running   0          58s
 tunnelfront-6f4cb4755b-wjfvw            1/1     Running   0          2d9h
 ```
 
+### Intalling prometheus-operator Helm chart
+
 Helm uses a packaging format called *charts*. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts are their Github repository at:
 https://github.com/helm/charts.git
 
@@ -51,7 +53,7 @@ Install the prometheus-operator Helm chart, with the name __prometheus__ in a na
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
 ```
 
-We need to specify the rbac.create=true variable for it to work in Azure, because it uses role-based access control (RBAC) to limit access to cluster resources.
+We need to specify the _rbac.create=true_ variable for it to work in Azure, because it uses role-based access control (RBAC) to limit access to cluster resources.
 
 To check Prometheu's pods in the monitoring namespace use:
 
@@ -65,12 +67,13 @@ prometheus-prometheus-node-exporter-6f6l4                1/1     Running   0    
 prometheus-prometheus-oper-operator-cc4dfd77c-v5wsr      1/1     Running   0          4m2s
 prometheus-prometheus-prometheus-oper-prometheus-0       0/3     Pending   0          3m26s
 ```
+
 ### Accessing Prometheus web console
 
 If you want to access Prometheus web console, we have to get its pod's name first:
 
 ```
-export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus" -o jsonpath="{.items[0].metadata.name}")
 ```
 
 Then we can open a proxy to it:
@@ -105,12 +108,11 @@ $ kubectl --namespace monitoring port-forward $POD_NAME 3000
 
 And visit http://localhost:3000
 
-We need to define a dashboard for Grafana to represent Prometheus metrics. Click import, load dashboard definition id 1860, and select Prometheus as the data source.
+We need to define a dashboard for Grafana to represent Prometheus metrics. You can browse Grafana dashboards definitions at https://grafana.com/dashboards. We will use https://grafana.com/grafana/dashboards/1860.
 
-You can browse aditional Grafana dashboard definitions at:
-https://grafana.com/dashboards
+Click import, load dashboard definition id 1860, and select Prometheus as the data source.
 
-https://grafana.com/grafana/dashboards/1860
+
 
 _Improvement_: You can modify the prometheus-operator Helm chart to automatically deploy the Grafana dashboard configured. See [this tutorial](https://medium.com/@chris_linguine/how-to-monitor-your-kubernetes-cluster-with-prometheus-and-grafana-2d5704187fc8).
 
