@@ -8,14 +8,15 @@ The main focus here is to be able to deploy that demo project to Azure Kubernete
 
 ### Introduction
 
+Hipster Shop is a demo project to test a microservices architecture on Kubernetes. It comprises an online shop powered by 10 different microservices, written in different programming languages (Java, Go, C#, Python, JavaScript/NodeJS). It is not a functional service or optimized, and its purpose is only for learning and testing. It comes with Locust preconfigured, a load generator that will start to run simulated traffic on the shop as soon as it boots up. 
+
+The original Hipster Shop demo is intended for use in a local kubernetes cluster or deployed to Google Kubernetes Engine. As Kubernetes is a standard, to add value to this demo we will explain how to deploy it on Azure Kubernetes Services (AKS) using Terraform, with a special focus on specific requirements for this cloud provider.
+
+We will also deploy Prometheus as a metric extractor and Grafana as a visualization tool for those metrics into the Kubernetes cluster using Helm.
+
 ![general_diagram](./docs/img/general_diagram.jpg)
 
-### Limitations
-
-The Stackdriver log monitor is specific to Google Cloud, the driver will try to connect several times and then give up.
-See [microservices-demo/docs/development-principles.md](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
-
-
+### How to use
 
 This instructions comes with some __optional__, __alternative__ and __improvement__ parts. You can skip them if you like for a straigh forward procedure. The improvements will suggest additional task that you could investigate on your own to improve this excercise.
 

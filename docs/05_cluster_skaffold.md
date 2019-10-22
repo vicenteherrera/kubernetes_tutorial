@@ -25,6 +25,9 @@ Checking cache...
 The push refers to repository [testacr22.azurecr.io/emailservice]
 ```
 
+The Hipster Shop demo uses a Stackdriver log monitor that is specific to Google Cloud, and its driver will try to connect several times and then give up.
+See [microservices-demo/docs/development-principles.md](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
+
 ## Check the cluster
 
 ```
