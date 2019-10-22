@@ -13,4 +13,7 @@ export SKAFFOLD_DEFAULT_REPO=$ACR_URI
 echo "Login with Docker to your ACR"
 docker login $ACR_URI -u $(terraform output acr_user) -p $(terraform output acr_password)
 
+echo "Getting Kubectl configuration"
+az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s --overwrite
+
 cd $dir_original
