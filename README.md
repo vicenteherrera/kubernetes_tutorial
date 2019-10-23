@@ -33,8 +33,8 @@ If you are using Windows, most of the explanations here could be used in cmd.exe
 * [2. Initial Azure resources setup](./docs/02_setup_az_sp.md)
 * [3. Provision infrastructure with Terraform](./docs/03_infra_terraform.md)
 * [4. Get credentials](./docs/04_get_credentials.md)
-* [5. Create cluster with Skaffold](./docs/05_cluster_skaffold.md)
-* [6. Installing Prometheus and Grafana using Helm](./docs/06_helm.md)
+* [5. Installing Prometheus and Grafana using Helm](./docs/05_helm.md)
+* [6. Deploy microservices with Skaffold](./docs/06_cluster_skaffold.md)
 * [7. Terminate and free resources](./docs/98_free_resources.md)
 * [Appendix: Troubleshooting](./docs/99_troubleshooting.md)
 
