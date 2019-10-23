@@ -26,7 +26,7 @@ Open a terminal in the root folder of this project, and execute this command to 
 git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
 ```
 
-### Create and Azure account
+### Create an Azure account
 
 Visit the Azure portal website and create a new account:
 

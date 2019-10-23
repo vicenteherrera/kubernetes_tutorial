@@ -1,6 +1,6 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 6. Installing Prometheus and Grafana using Helm
+## 5. Installing Prometheus and Grafana using Helm
 
 ### Installing Tiller, Kubernetes component of Helm
 
@@ -125,7 +125,10 @@ _Improvement_: Check [this alternative](http://www.allaboutwindowssl.com/2019/03
 _Improvement_: Describe creating users in Grafana, binding the output to the public IP, and using a persistent storage.
 
 ---
-[Next step: 7. Terminate and free resources](../docs/98_free_resources.md)  
+[Previous step: 6. Deploy microservices with Skaffold](../docs/06_cluster_skaffold.md)
 
-[Previous step: 5. Create cluster with Skaffold](../docs/05_cluster_skaffold.md)
+[Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md)
+
+
+
 

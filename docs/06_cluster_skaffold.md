@@ -1,6 +1,6 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 5. Set up the Kubernetes cluster with Skaffold
+## 5. Deploy microservices with Skaffold
 
 Skaffold allows us to have a seamless development workflow with Kubernetes.
 
@@ -113,7 +113,6 @@ _Improvement_: With the default configuration, Skaffold doesn't use your provisi
 _Improvement_: You could set up a CI/CD pipeline in Azure Devops portal linked to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
 
 ---
-[Next step: 6. Installing Prometheus and Grafana using Helm](../docs/06_helm.md)  
+[Next step: 7. Terminate and free resources](../docs/98_free_resources.md)  
 
-[Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md)
-
+[Previous step: 5. Installing Prometheus and Grafana using Helm](../docs/05_helm.md)
