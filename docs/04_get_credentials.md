@@ -81,7 +81,7 @@ $ set SKAFFOLD_DEFAULT_REPO=ACR_URI
 _Improvement_: Set up cluster's RBAC to use Azure Active Directory role mapping.
 
 ---
-[Next step: 5. Create cluster with Skaffold](../docs/05_cluster_skaffold.md)  
+[Next step: 5. Installing Prometheus and Grafana using Helm](../docs/05_helm.md)  
 
 [Previous step: 3. Provision infrastructure with Terraform](../docs/03_infra_terraform.md)
 
