@@ -1,6 +1,6 @@
 # Azure Hipster Shop: AKS Microservices Demo
 
-## 5. Deploy microservices with Skaffold
+## 6. Deploy microservices with Skaffold
 
 Skaffold allows us to have a seamless development workflow with Kubernetes.
 
