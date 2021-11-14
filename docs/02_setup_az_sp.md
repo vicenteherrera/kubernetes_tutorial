@@ -1,4 +1,12 @@
-# Azure Hipster Shop: AKS Microservices Demo
+---
+layout: default
+title: Kubernetes tutorial
+description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Skaffold
+breadcrumb1: 2. Initial Azure resources setup
+---
+[<< Back to index](../){:class="solid-btn text-center"}
+
+# Kubernetes tutorial
 
 ## 2. Initial Azure resources setup
 
@@ -10,7 +18,7 @@ We will use an storage volume in Azure to store the infrastructure state created
 
 For more information, see: https://docs.microsoft.com/en-us/azure/terraform/terraform-backend
 
-```
+```bash
 #!/bin/bash
 
 RESOURCE_GROUP_NAME=tstate
@@ -42,19 +50,19 @@ We will need several secret values stored, but we don't want them to be stored o
 
 To create a Key Vault resource named "SysTest-Vault" in resource group "tstate" on _westeurope_ location, use:
 
-```
+```bash
 az keyvault create --name "SysTest-Vault" --resource-group "tstate" --location westeurope
 ```
 
 To store the access key of the volume in the Key Vault:
 
-```
+```bash
 az keyvault secret set --vault-name "SysTest-Vault" --name "tstateAccessKey" --value $ACCOUNT_KEY
 ```
 
 Any time later you need to retrieve this value, you cand do so after having logged in with Azure CLI, using:
 
-```
+```bash
 az keyvault secret show --name "tstateAccessKey" --vault-name "SysTest-Vault" --query value -o tsv
 ```
 
@@ -70,7 +78,7 @@ AKS needs a service principal to be able to create virtual machines for the Kube
 
 To create a new Service Principal named "ServPrincipalAKS", use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown when you log in with `az login`.
 
-```
+```console
 $ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" --name ServPrincipalAKS
 
 Creating a role assignment under the scope of "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
@@ -89,13 +97,13 @@ Optional: Without additional steps, the password (secret) can't be retrieved lat
 
 Optional: To retrieve the rest of the data from existing service principals created from the command line, use:
 
-```
+```bash
 az ad sp list --display-name ServPrincipalAKS
 ```
 
 If you didn't use a name for the service principal, its name will have the prefix "azure-cli-", and you can look for it with:
 
-```
+```bash
 az ad sp list --display-name azure-cli-
 ```
 
@@ -107,14 +115,14 @@ If you prefer to use the web interface, follow [these instructions](https://docs
 
 Take note of the appId (the id) and the password (the secret) for the service principal just created. We will store them in the Key Vault. 
 
-```
+```bash
 az keyvault secret set --vault-name "SysTest-Vault" --name "spId" --value "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 az keyvault secret set --vault-name "SysTest-Vault" --name "spSecret" --value "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 ```
 
 Now, when we want to retrieve them and the storage access key to environment variables that Terraform can use, without having the written down in any file, we use:
 
-```
+```bash
 TF_VAR_client_id=$(az keyvault secret show --name "spId" --vault-name "SysTest-Vault" --query value -o tsv)
 TF_VAR_client_secret=$(az keyvault secret show --name "spSecret" --vault-name "SysTest-Vault" --query value -o tsv)
 ARM_ACCESS_KEY=$(az keyvault secret show --name "tstateAccessKey" --vault-name "SysTest-Vault" --query value -o tsv)
@@ -127,7 +135,7 @@ Those special variable names are expected by Terraform for those parameters. Rem
 You could use the identity of the Service Principal to provision the whole infrastructure with Terraforn.
 If you set up the following environment variables, Terraform will use that identity instead of the Azure CLI logged in user.
 
-```
+```bash
 ARM_CLIENT_ID=$(az keyvault secret show --name "spId" --vault-name "SysTest-Vault" --query value -o tsv)
 ARM_CLIENT_SECRET=$(az keyvault secret show --name "spSecret" --vault-name "SysTest-Vault" --query value -o tsv)
 ARM_TENANT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX # : Obtain it from the account info on login
@@ -136,7 +144,7 @@ ARM_SUBSCRIPTION_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX # Obtain it from the ac
 
 
 ---
-[Next step: 3. Provision infrastructure with Terraform](../docs/03_infra_terraform.md)  
+[Next step: 3. Provision infrastructure with Terraform >>](../docs/03_infra_terraform.md){:class="solid-btn text-center"}    
 
-[Previous step: 1. Prerequisites](../docs/01_prerequisites.md)  
+[<< Previous step: 1. Prerequisites](../docs/01_prerequisites.md){:class="solid-btn text-center"}    
 

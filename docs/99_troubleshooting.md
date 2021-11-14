@@ -1,10 +1,19 @@
-# Azure Hipster Shop: AKS Microservices Demo
+---
+layout: default
+title: Kubernetes tutorial
+description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Skaffold
+breadcrumb1: "Appendix: Troubleshooting"
+---
+[<< Back to index](../){:class="solid-btn text-center"}
+
+# Kubernetes tutorial
+
 
 ## Appendix: Troubleshooting
 
 ### One or more nodes with status 'CrashLoopBackOff'
 
-```
+```bash
 $ kubectl get pods
 $ kubectl describe pod pod-crashloopbackoff-7f7c556bf5-9vc89
 $ kubectl logs pod-crashloopbackoff-7f7c556bf5-9vc89 im-crashing
@@ -18,7 +27,7 @@ Try looking for more information at:
 
 ### failed to initialize stackdriver exporter: stackdriver: 
 
-```
+```console
 failed to initialize stackdriver exporter: stackdriver:  google: could not find default credentials. See https://developers.google.com/accounts/docs/application-default-credentials for more information
 ```
 
@@ -34,7 +43,7 @@ You have done `az login` and `az account show` works.
 
 But when you try `terraform plan`, you get an error like this:
 
-```
+```console
 $ terraform plan
 Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
@@ -61,7 +70,7 @@ If after that you still experience problems, try them resetting your `az` token 
 
 Another alternative is to use the same credentials of the created Service Principal to issue Terraform commands, by setting these variables:
 
-```
+```bash
 ARM_CLIENT_ID="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 ARM_CLIENT_SECRET="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 ARM_TENANT_ID="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
@@ -75,7 +84,7 @@ ARM_SUBSCRIPTION_ID="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 
 ### Unknown token: 19:25 IDENT module.resource_group.name
 
-``` 
+```console
 $ terraform init
 There are some problems with the configuration, described below.
 
@@ -90,7 +99,7 @@ Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token:
 
 *Solution*: You need to specify __--set rbac.create=true__ when you install the Helm chart.
 
-```
+```bash
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
 ```
 
@@ -100,7 +109,7 @@ Error message: `error: unable to forward port because pod is not running. Curren
 
 If you list the pods in the monitoring namespace, the last one is pending:
 
-```
+```console
 $ kubectl get pods --namespace monitoring
 
 NAME                                                     READY   STATUS    RESTARTS   AGE
@@ -113,7 +122,8 @@ prometheus-prometheus-prometheus-oper-prometheus-0       0/3     Pending   0    
 ```
 
 There is a bug in Helm that prevents it to create the CRD before using them. Try first creating them manually:
-```
+
+```bash
 kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/alertmanager.crd.yaml
 kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/prometheus.crd.yaml
 kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/prometheusrule.crd.yaml
@@ -123,11 +133,13 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/ma
 
 Wait a couple of seconds, then install the chart with:
 
-```
+```bash
 helm install --name prometheus stable/prometheus-operator --set prometheusOperator.createCustomResource=false  --set rbac.create=true
 ```
 
 See [this for more information](https://github.com/helm/charts/tree/master/stable/prometheus-operator#helm-fails-to-create-crds).
----
-  
-[Previous step: 7. Terminate and free resources](../doc/98_free_resources.md)  
+
+---  
+[<< Previous step: 7. Terminate and free resources](../doc/98_free_resources.md){:class="solid-btn text-center"}   
+
+[<< Back to index](../){:class="solid-btn text-center"}

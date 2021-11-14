@@ -1,4 +1,13 @@
-# Azure Hipster Shop: AKS Microservices Demo
+---
+layout: default
+title: Kubernetes tutorial
+description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Skaffold
+breadcrumb1: 3. Provision infrastructure with Terraform
+---
+[<< Back to index](../){:class="solid-btn text-center"}
+
+# Kubernetes tutorial
+
 
 ## 3. Provision infrastructure with Terraform
 
@@ -26,7 +35,7 @@ To continue you must already have logged in with the Azure CLI, and have the env
 
 Initialize Terraform's Azure driver using the backend.tfconfig backend configuration options to use the Azure storage for the infrastructure state, using:
 
-```
+```console
 $ cd infra
 $ terraform init -backend-config=backend.tfconfig
 ```
@@ -35,7 +44,7 @@ $ terraform init -backend-config=backend.tfconfig
 
 We can test the execution plan without making any change to infrastructure with:
 
-```
+```console
 $ terraform plan
 ```
 
@@ -45,7 +54,7 @@ To continue you must have defined the environment variables _TF_VAR_client_id_ a
 
 Provision the changes to infrastructure in your Azure account, use:
 
-```
+```console
 $ terraform apply
 ```
 
@@ -53,7 +62,7 @@ You will be shown the plan again, and asked for confirmation to continue. The pr
 
 At the end you will be shown an output like this:
 
-```
+```console
 ...
 Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 
@@ -87,7 +96,7 @@ You will now have on your Azure account:
  * A load balancer assigned to that public IP
  * An Azure Kubernetes Service managed cluster, using the previous load balancer
 
-![Azure infrastructure](../docs/img/azure_infra.png)
+![Azure infrastructure](../docs/img/azure_infra.png){:class="img-fluid"}
 
 You could omit the creation of the public IP and load balancer, as those resources would be automatically provisioned for your cluster. But when you provision them in an explicit way, if you later remove the Kubernetes cluster to replace it for a different one, you will maintain the same IP address.
 
@@ -100,7 +109,7 @@ _Improvement_: You could also provision a Log Analytics resource for the cluster
 _Improvement_: Use workspaces to define different parameters for a production and development Kubernetes environment, [more info](https://www.terraform.io/docs/state/workspaces.html).
 
 ---
-[Next step: 4. Get credentials Kubectl and ACR](../docs/04_get_credentials.md)  
+[Next step: 4. Get credentials Kubectl and ACR >>](../docs/04_get_credentials.md){:class="solid-btn text-center"}    
 
-[Previous step: 2. Initial Azure resources setup](../docs/02_setup_az_sp.md)
+[<< Previous step: 2. Initial Azure resources setup](../docs/02_setup_az_sp.md){:class="solid-btn text-center"}  
 

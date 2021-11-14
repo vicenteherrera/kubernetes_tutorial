@@ -1,4 +1,12 @@
-# Azure Hipster Shop: AKS Microservices Demo
+---
+layout: default
+title: Kubernetes tutorial
+description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Skaffold
+breadcrumb1: 1. Prerequisites
+---
+[<< Back to index](../){:class="solid-btn text-center"}
+
+# Kubernetes tutorial
 
 ## 1. Prerequisites
 
@@ -22,7 +30,7 @@ You will need to install the following tools:
 
 Open a terminal in the root folder of this project, and execute this command to clone the Hipster Shop repository from GitHub:
 
-```
+```bash
 git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
 ```
 
@@ -37,7 +45,7 @@ Visit the Azure portal website and create a new account:
 Use `az login` to log into your Azure account. A new browser window will open where you can finish the login procedure before returning to the terminal.
 If using a remote terminal or an environment without a browser, an special code and URL will be shown to open in another computer's browser to finish the login procedure.
 
-```
+```console
 $ az login
 
 Note, we have launched a browser for you to login. For old experience with device code, use "az login --use-device-code"
@@ -63,13 +71,13 @@ We will later need the "id" value shown when you log in.
 
 _Optional_: You can check any time what account you are logged in and this information with:
 
-```
+```console
 $ az account show
 ```
 
 You may need to register the use of the following providers with your Azure account to create the kind of resources we are going to use. They are needed to create new resources related to those providers.
 
-```
+```bash
 az provider register -n Microsoft.Network
 az provider register -n Microsoft.Storage
 az provider register -n Microsoft.Compute
@@ -77,6 +85,6 @@ az provider register -n Microsoft.ContainerService
 ```
 
 ---
-[Next step: 2. Initial Azure resources setup](../docs/02_setup_az_sp.md)  
+[Next step: 2. Initial Azure resources setup >>](../docs/02_setup_az_sp.md){:class="solid-btn text-center"}  
 
-[Previous step: 0. Getting started](../README.md)
+[<< Previous step: 0. Getting started](../docs/00_getting_started.md){:class="solid-btn text-center"}

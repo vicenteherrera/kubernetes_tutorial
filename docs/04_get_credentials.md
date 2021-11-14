@@ -1,4 +1,13 @@
-# Azure Hipster Shop: AKS Microservices Demo
+---
+layout: default
+title: Kubernetes tutorial
+description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Skaffold
+breadcrumb1: 4. Get Kubectl and ACR credentials
+---
+[<< Back to index](../){:class="solid-btn text-center"}
+
+# Kubernetes tutorial
+
 
 ## 4. Get Kubectl and ACR credentials
 
@@ -29,17 +38,17 @@ kubectl context view
 
 You can deploy a web dashboard to inspect all the parameters of your cluster using:
 
-```
+```bash
 az aks browse --resource-group SysTest-k8s-resources --name SysTest-k8s
 ```
 
 A new browser window will open to the dashboard at http://127.0.0.1:8001 without having to enter additional credentials. [More info at this link](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard).
 
-![Kubernetes dashboard](../docs/img/kube_dashboard.png)
+![Kubernetes dashboard](../docs/img/kube_dashboard.png){:class="img-fluid"}
 
 _Alternative_: To do the same for any Kubernetes cluster, use:
 
-```
+```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
 kubectl proxy
 ```
@@ -56,7 +65,7 @@ We need to log in with the Docker client to our Azure Container Registry we crea
 
 To do so, use the following command from the `infra` folder that retrieves the necessary variables from the Terraform state.
 
-```
+```console
 $ docker login $(terraform output acr_uri) -u $(terraform output acr_user) -p $(terraform output acr_password)
 
 WARNING! Using --password via the CLI is insecure. Use --password-stdin.
@@ -68,20 +77,21 @@ Login Succeeded
 ```
 
 We will also store the ACR URI, so it is easier to reference outside terraform infrastructure directory:
-```
+
+```console
 $ ACR_URI="$(terraform output acr_uri)" && echo $ACR_URI
 ```
 
 We will also store it in a environment variable name that Skaffold will recognize for it to use a different container registry that Docker Hub on each command execution:
 
-```
+```consolebash
 $ set SKAFFOLD_DEFAULT_REPO=ACR_URI
 ```
 
 _Improvement_: Set up cluster's RBAC to use Azure Active Directory role mapping.
 
 ---
-[Next step: 5. Installing Prometheus and Grafana using Helm](../docs/05_helm.md)  
+[Next step: 5. Installing Prometheus and Grafana using Helm >>](../docs/05_helm.md){:class="solid-btn text-center"}    
 
-[Previous step: 3. Provision infrastructure with Terraform](../docs/03_infra_terraform.md)
+[<< Previous step: 3. Provision infrastructure with Terraform](../docs/03_infra_terraform.md){:class="solid-btn text-center"}  
 

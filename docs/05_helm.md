@@ -1,4 +1,13 @@
-# Azure Hipster Shop: AKS Microservices Demo
+---
+layout: default
+title: Kubernetes tutorial
+description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Skaffold
+breadcrumb1: 5. Installing Prometheus and Grafana using Helm
+---
+[<< Back to index](../){:class="solid-btn text-center"}
+
+# Kubernetes tutorial
+
 
 ## 5. Installing Prometheus and Grafana using Helm
 
@@ -114,7 +123,7 @@ Click import, load dashboard definition id _1860_, and select Prometheus as the 
 
 You should see the dashboard's instant metrics right away, and graphs will slowly start to display historical values.
 
-![Grafana dashboard for Prometheus](../docs/img/grafana.png)
+![Grafana dashboard for Prometheus](../docs/img/grafana.png){:class="img-fluid"}
 
 
 _Improvement_: You can modify the prometheus-operator Helm chart to automatically deploy the Grafana dashboard configured. See [this tutorial](https://medium.com/@chris_linguine/how-to-monitor-your-kubernetes-cluster-with-prometheus-and-grafana-2d5704187fc8).
@@ -125,9 +134,9 @@ _Improvement_: Check [this alternative](http://www.allaboutwindowssl.com/2019/03
 _Improvement_: Describe creating users in Grafana, binding the output to the public IP, and using a persistent storage.
 
 ---
-[Previous step: 6. Deploy microservices with Skaffold](../docs/06_cluster_skaffold.md)
+[Next step: 6. Deploy microservices with Skaffold >>](../docs/06_cluster_skaffold.md){:class="solid-btn text-center"}  
 
-[Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md)
+[<< Previous step: 4. Get Kubectl and ACR credentials](../docs/04_get_credentials.md){:class="solid-btn text-center"}  
 
 
 

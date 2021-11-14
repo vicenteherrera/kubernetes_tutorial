@@ -1,0 +1,11 @@
+title: Kubernetes tutorial
+
+remote_theme: vicenteherrera/jekyll-theme-vicenteherrera@main
+
+google_analytics: UA-822637-16
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-remote-theme
