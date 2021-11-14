@@ -140,6 +140,6 @@ helm install --name prometheus stable/prometheus-operator --set prometheusOperat
 See [this for more information](https://github.com/helm/charts/tree/master/stable/prometheus-operator#helm-fails-to-create-crds).
 
 ---  
-[<< Previous step: 7. Terminate and free resources](../doc/98_free_resources.md){:class="solid-btn text-center"}   
+[<< Previous step: 7. Terminate and free resources](../docs/98_free_resources.md){:class="solid-btn text-center"}   
 
 [<< Back to index](../){:class="solid-btn text-center"}
