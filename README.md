@@ -17,5 +17,5 @@ Tools used in the tutorial:
 * Hipster Shop demo: To have a sample microservices architecture running
 * Skaffold: To deploy and live modify the microservices
 
-[Visit the tutorial website](https://vicenteherrera/kubernetes_tutorial)
+[Visit the tutorial website](https://vicenteherrera.com/kubernetes_tutorial)
 
