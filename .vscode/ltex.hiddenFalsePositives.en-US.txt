@@ -1,1 +1,2 @@
 {"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QWhen using the \"run\" command, you can push Ctrl+C to exit and the microservices application will continue to run.\\E$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QWhen using the \"run\" command, you can press Ctrl+C to exit and the microservices application will continue to run.\\E$"}

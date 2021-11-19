@@ -30,7 +30,7 @@ To delete the prometheus-operator resources, use
 helm delete --purge prometheus
 ```
 
-prometheus-operator defines some custom resource definitions (CRDs), that have to be deleted manually:
+`prometheus-operator` defines some custom resource definitions (CRDs), that have to be deleted manually:
 
 ```bash
 kubectl delete crd prometheuses.monitoring.coreos.com

@@ -31,7 +31,7 @@ Change to the `infra` directory. You will find several files and folders:
 
 ### Initializing Terraform and state storage
 
-To continue you must already have logged in with the Azure CLI, and have the environment variable _ARM_ACCESS_KEY_ set up as explained earlier.
+To continue you must already have logged in with the Azure CLI, and have the environment variable `ARM_ACCESS_KEY` set up as explained earlier.
 
 Initialize Terraform's Azure driver using the `backend.tfconfig` backend configuration options to use the Azure storage for the infrastructure state, using:
 
@@ -50,7 +50,7 @@ $ terraform plan
 
 ### Provisioning the infrastructure
 
-To continue you must have defined the environment variables _TF_VAR_client_id_ and _TF_VAR_client_secret_ as explained previously.
+To continue you must have defined the environment variables `TF_VAR_client_id` and `TF_VAR_client_secret` as explained previously.
 
 Provision the changes to infrastructure in your Azure account, use:
 

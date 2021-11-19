@@ -14,7 +14,7 @@ This procedure should be done only once, even if you delete the cluster and dest
 
 ### Create Storage for Terraform to store plan
 
-We will use a storage volume in Azure to store the infrastructure state created with Terraform later. To do this, execute the following script, and it will create on _westeurope_ location a Resource Group called "tstate", and inside it, a storage with "tstatesystest" name.
+We will use a storage volume in Azure to store the infrastructure state created with Terraform later. To do this, execute the following script, and it will create on _westeurope_ location a Resource Group called `tstate`, and inside it, a storage with `tstatesystest` name.
 
 For more information, see: https://docs.microsoft.com/en-us/azure/terraform/terraform-backend
 
@@ -48,7 +48,7 @@ At the end of the execution, the result environment variables will be shown.
 
 We will need several secret values stored, but we don't want them to be stored on a file that can be stolen or uploaded to an unsafe place. To store them securely, we will create an Azure Key Vault resource.
 
-To create a Key Vault resource named "SysTest-Vault" in resource group "tstate" on _westeurope_ location, use:
+To create a Key Vault resource named `SysTest-Vault` in resource group `tstate` on `westeurope` location, use:
 
 ```bash
 az keyvault create --name "SysTest-Vault" --resource-group "tstate" --location westeurope
@@ -76,7 +76,7 @@ A Service Principal is like a new user that we create to grant permissions to on
 
 AKS needs a service principal to be able to create virtual machines for the Kubernetes cluster infrastructure.
 
-To create a new Service Principal named "ServPrincipalAKS", use the following command, replacing 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' with your account id shown when you log in with `az login`.
+To create a new Service Principal named `ServPrincipalAKS`, use the following command, replacing `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX` with your account id shown when you log in with `az login`.
 
 ```console
 $ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" --name ServPrincipalAKS
@@ -113,7 +113,7 @@ If you prefer to use the web interface, follow [these instructions](https://docs
 
 ### Save Service Principal id and secret to Key Vault
 
-Take note of the appId (the id) and the password (the secret) for the service principal just created. We will store them in the Key Vault. 
+Take note of the `appId` (the id) and the password (the secret) for the service principal just created. We will store them in the Key Vault. 
 
 ```bash
 az keyvault secret set --vault-name "SysTest-Vault" --name "spId" --value "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"

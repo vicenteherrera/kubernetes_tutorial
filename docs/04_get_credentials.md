@@ -14,7 +14,8 @@ breadcrumb1: 4. Get Kubectl and ACR credentials
 ### Get Kubectl credentials
 
 To store credentials needed to Kubectl to log into your cluster, use:
-```
+
+```console
 $ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k8s --overwrite
 ```
 
@@ -24,13 +25,13 @@ $ az aks get-credentials --resource-group SysTest-k8s-resources --name SysTest-k
 
 To check which context you are connected to with kubectl:
 
-```
+```bash
 kubectl config current-context
 ```
 
 If you what to list all other contexts:
 
-```
+```bash
 kubectl context view
 ```
 

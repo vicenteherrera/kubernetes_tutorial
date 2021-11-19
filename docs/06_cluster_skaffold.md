@@ -58,8 +58,7 @@ The push refers to repository [systestacr.azurecr.io/emailservice]
 
 Skaffold will start its workflow, using the `src` files as sources for the microservices, and the files from `kubermentes-manifest` to deploy the Kubernetes associated resources.
 
-
-Using the --tail switch, you will start to see messages in the console like these:
+Using the `--tail` switch, you will start to see messages in the console like these:
 
 ```console
 [cartservice-558bdc457b-g4bmt server] Checking CartService Health
@@ -67,9 +66,9 @@ Using the --tail switch, you will start to see messages in the console like thes
 [emailservice-54ffc447b8-q9md2 server] [SpanData(name='Recv.grpc.health.v1.Health.Check', context=SpanContext(trace_id=ac3badfd1dc14226b960f7189d85a926, span_id=None, trace_options=TraceOptions(enabled=True), tracestate=None), span_id='c76d223f1b5a4440', parent_span_id=None, attributes={'component': 'grpc'}, start_time='2019-10-22T03:55:32.329961Z', end_time='2019-10-22T03:55:32.330053Z', child_span_count=0, stack_trace=None, time_events=[<opencensus.trace.time_event.TimeEvent object at 0x7f20c823ccd0>, <opencensus.trace.time_event.TimeEvent object at 0x7f20c823e550>], links=[], status=None, same_process_as_parent_span=None, span_kind=1)]
 ```
 
-The Hipster Shop demo uses a Stackdriver log monitor that is specific to Google Cloud, and its driver will try to connect several times and then give up. See [the official documentation](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
+The Hipster Shop demo uses a _Stackdriver_ log monitor that is specific to Google Cloud, and its driver will try to connect several times and then give up. See [the official documentation](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/docs/development-principles.md) for more information.
 
-When using the "run" command, you can push Ctrl+C to exit and the microservices application will continue to run. Also, changes to sources will not be synced to the cluster.
+When using the "run" command, you can press Ctrl+C to exit and the microservices application will continue to run. Also, changes to sources will not be synced to the cluster.
 
 ### Browsing the shop's website
 
@@ -82,8 +81,8 @@ NAME                TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)        
 frontend-external   LoadBalancer   10.0.200.147   13.73.227.79   80:31971/TCP   12m
 ```
 
-Then open the http URL using "EXTERNAL-IP" address to see the shop's web page:
-http://13.73.227.79
+Then open the http URL using "EXTERNAL-IP" address to see the shop's web page, in this example:
+[http://13.73.227.79](http://13.73.227.79).
 
 If it shows `<pending>`, you have to wait till the external IP has been provisioned. Sometimes it can take more than 5 minutes for it to be available.
 

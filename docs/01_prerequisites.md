@@ -43,7 +43,7 @@ Visit the Azure portal website and create a new account:
 ### Configure Azure CLI
 
 Use `az login` to log into your Azure account. A new browser window will open where you can finish the login procedure before returning to the terminal.
-If using a remote terminal or an environment without a browser, an special code and URL will be shown to open in another computer's browser to finish the login procedure.
+If using a remote terminal or an environment without a browser, a special code and URL will be shown to open in another computer's browser to finish the login procedure.
 
 ```console
 $ az login

@@ -93,11 +93,12 @@ Terraform can determine which modules and providers need to be installed.
 
 Error: Error parsing /home/mord/code/amd/infra/main.tf: At 19:25: Unknown token: 19:25 IDENT module.resource_group.name
 ```
+
 *Solution*: Update your terraform binary to the latest version (at least v0.12.10). Make sure you go to the official page referenced in this documentation for the latest one.
 
 ### Grafana's dashboard shows Error "Bad Gateway", and no data
 
-*Solution*: You need to specify __--set rbac.create=true__ when you install the Helm chart.
+*Solution*: You need to specify `--set rbac.create=true` when you install the Helm chart.
 
 ```bash
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true

@@ -14,9 +14,9 @@ breadcrumb1: 0. Getting started
 
 Hipster Shop is a demo project to test a microservices architecture on Kubernetes. It comprises an online shop powered by 10 different microservices, written in different programming languages (Java, Go, C#, Python, JavaScript/NodeJS). It is not a functional service or optimized, and its purpose is only for learning and testing. It comes with Locust preconfigured, a load generator that will start to run simulated traffic on the shop as soon as it boots up. 
 
-The original Hipster Shop demo is intended for use in a local Kubernetes cluster or deployed to Google Kubernetes Engine. As Kubernetes is a standard, to add value to this demo we will explain how to deploy it on Azure Kubernetes Services (AKS) using Terraform, with a special focus on specific requirements for this cloud provider.
+The original Hipster Shop demo is intended for use in a local Kubernetes cluster or deployed to Google Kubernetes Engine. As Kubernetes is a standard, to add value to this demo we will explain how to deploy it on _Azure Kubernetes Services_ (AKS) using _Terraform_, with a special focus on specific requirements for this cloud provider.
 
-We will also deploy Prometheus as a metric extractor and Grafana as a visualization tool for those metrics into the Kubernetes cluster using Helm.
+We will also deploy _Prometheus_ as a metric extractor and Grafana as a visualization tool for those metrics into the Kubernetes cluster using _Helm_.
 
 ![general_diagram](./img/general_diagram.png){:class="img-fluid"}
 
@@ -28,7 +28,7 @@ We will assume we use a __bash__ shell environment. Whenever an example script s
 
 If you are using Windows, most of the explanations here could be used in cmd.exe, but you can achieve full compatibility by using [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-*Improvement:* Adapt the explanations and scripts to be able to use them from Windows's cmd.exe or Powershell.
+*Improvement:* Adapt the explanations and scripts to be able to use them from Windows's `cmd.exe` or _Powershell_.
 
 
 ---
