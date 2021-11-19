@@ -91,7 +91,7 @@ If it shows `<pending>`, you have to wait till the external IP has been provisio
 
 ### Developing and Skaffold
 
-If you want to develop code for the microservices and have Skaffold execute it's workflow to automatically publish it to the Kubernetes cluster whenever it detects a change, use:
+If you want to develop code for the microservices and have Skaffold execute its workflow to automatically publish it to the Kubernetes cluster whenever it detects a change, use:
 
 ```console
 $ skaffold dev
@@ -119,7 +119,7 @@ $ kubectl get pods --all-namespaces
 
 _Improvement_: With the default configuration, Skaffold doesn't use your provisioned public IP. Change it to use that.
 
-_Improvement_: You could set up a CI/CD pipeline in Azure Devops portal linked to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
+_Improvement_: You could set up a CI/CD pipeline in _Azure Devops_ portal linked to a git repository to automatically deploy the cluster when a commit to __master__ branch is done.
 
 ---
 [Next step: 7. Terminate and free resources >>](../docs/98_free_resources.md){:class="solid-btn text-center"}    

@@ -42,7 +42,7 @@ tunnelfront-6f4cb4755b-wjfvw            1/1     Running   0          2d9h
 
 ### Installing prometheus-operator Helm chart
 
-Helm uses a packaging format called *charts*. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts are their GitHub repository at:
+Helm uses a packaging format called *charts*. A chart is a collection of files that describe a related set of Kubernetes resources. The default location for Helm charts is their GitHub repository at:
 https://github.com/helm/charts.git
 
 You can update the list of charts available using:
@@ -62,7 +62,7 @@ If you just installed Tiller, wait a few seconds, and then install the prometheu
 helm install --namespace monitoring --name prometheus stable/prometheus-operator --set rbac.create=true
 ```
 
-We need to specify the _rbac.create=true_ variable for it to work in Azure, because it uses role-based access control (RBAC) to limit access to cluster resources.
+We need to specify the `rbac.create=true` variable for it to work in Azure, because it uses role-based access control (RBAC) to limit access to cluster resources.
 
 To check Prometheus' pods in the monitoring namespace use:
 
@@ -110,7 +110,7 @@ We need to get Grafana pod name:
 export NODE_GRAF=$(kubectl get pods --namespace monitoring -l "app=grafana,release=prometheus" -o jsonpath="{.items[0].metadata.name}")
 ```
 
-Now we open a proxy to Grafana's  dashboard, and use __admin__ username and the previous password to log in.
+Now we open a proxy to Grafana's dashboard, and use __admin__ username and the previous password to log in.
 ```
 $ kubectl --namespace monitoring port-forward $NODE_GRAF 3000
 ```

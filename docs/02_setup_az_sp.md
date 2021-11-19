@@ -14,7 +14,7 @@ This procedure should be done only once, even if you delete the cluster and dest
 
 ### Create Storage for Terraform to store plan
 
-We will use an storage volume in Azure to store the infrastructure state created with Terraform later. To do this, execute the following script and it will create on _westeurope_ location a Resource Group called "tstate", and inside it, an storage with "tstatesystest" name.
+We will use a storage volume in Azure to store the infrastructure state created with Terraform later. To do this, execute the following script, and it will create on _westeurope_ location a Resource Group called "tstate", and inside it, a storage with "tstatesystest" name.
 
 For more information, see: https://docs.microsoft.com/en-us/azure/terraform/terraform-backend
 
@@ -60,7 +60,7 @@ To store the access key of the volume in the Key Vault:
 az keyvault secret set --vault-name "SysTest-Vault" --name "tstateAccessKey" --value $ACCOUNT_KEY
 ```
 
-Any time later you need to retrieve this value, you cand do so after having logged in with Azure CLI, using:
+Any time later you need to retrieve this value, you can do so after having logged in with Azure CLI, using:
 
 ```bash
 az keyvault secret show --name "tstateAccessKey" --vault-name "SysTest-Vault" --query value -o tsv
@@ -93,7 +93,7 @@ Creating a role assignment under the scope of "/subscriptions/XXXXXXXX-XXXX-XXXX
 }
 ```
 
-Optional: Without additional steps, the password (secret) can't be retrieved later, ([but you could reset it here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#reset-credentials) ).
+Optional: Without additional steps, the password (secret) can't be retrieved later, ([but you could reset it here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#reset-credentials)).
 
 Optional: To retrieve the rest of the data from existing service principals created from the command line, use:
 
@@ -132,8 +132,8 @@ Those special variable names are expected by Terraform for those parameters. Rem
 
 ### Alternative: Use the Service Principal to provision infrastructure instead of Azure CLI
 
-You could use the identity of the Service Principal to provision the whole infrastructure with Terraforn.
-If you set up the following environment variables, Terraform will use that identity instead of the Azure CLI logged in user.
+You could use the identity of the Service Principal to provision the whole infrastructure with Terraform.
+If you set up the following environment variables, Terraform will use that identity instead of the Azure CLI logged-in user.
 
 ```bash
 ARM_CLIENT_ID=$(az keyvault secret show --name "spId" --vault-name "SysTest-Vault" --query value -o tsv)

@@ -11,20 +11,20 @@ breadcrumb1: 3. Provision infrastructure with Terraform
 
 ## 3. Provision infrastructure with Terraform
 
-We will store the infrastructure state in the volume storage created previously, so any other person trying to work with this infrastructure will have access to it. Also when executing changes, the state will be locked, preventing other users to try to change infrastructure at the same time.
+We will store the infrastructure state in the volume storage created previously, so any other person trying to work with this infrastructure will have access to it. Also, when executing changes, the state will be locked, preventing other users to try to change infrastructure at the same time.
 
 Change to the `infra` directory. You will find several files and folders:
 
  * `backend.tfconfig`: parameters for the resource group and volume name that will store the infrastructure state
  * `terraform.tfvars`: input values to define a prefix\* for all resource names, and default datacenter location
- * `variables.tf`: inputs definitions, including the ones for the terraform.tfvars values, and the service principal id and secret.
+ * `variables.tf`: inputs definitions, including the ones for the `terraform.tfvars` values, and the service principal id and secret.
  * `main.tf`: main Terraform file that references all other modules
  * `outputs.tf`: output variable definitions
  * `modules` (folder)
    * `acr` (folder): files to define an Azure Container Registry provisioning
    * `aks` (folder): files to define an Azure Kubernetes Service provisioning
    * `load_balancer` (folder): files to define load balancer
-   * `public_ip` (folder): files to define a public ip
+   * `public_ip` (folder): files to define a public IP address
    * `resource-group` (folder): files to define a Resource Group provisioning
 
 \*The "prefix" must contain only alphabetical characters, because it is used for the name of the Azure Container Registry, and that only allows this kind of characters (no numbers, dashes or underscores).
@@ -33,7 +33,7 @@ Change to the `infra` directory. You will find several files and folders:
 
 To continue you must already have logged in with the Azure CLI, and have the environment variable _ARM_ACCESS_KEY_ set up as explained earlier.
 
-Initialize Terraform's Azure driver using the backend.tfconfig backend configuration options to use the Azure storage for the infrastructure state, using:
+Initialize Terraform's Azure driver using the `backend.tfconfig` backend configuration options to use the Azure storage for the infrastructure state, using:
 
 ```console
 $ cd infra
@@ -50,7 +50,7 @@ $ terraform plan
 
 ### Provisioning the infrastructure
 
-To continue you must have defined the environment variables _TF_VAR_client_id_ and _TF_VAR_client_secret_ as explanied previously.
+To continue you must have defined the environment variables _TF_VAR_client_id_ and _TF_VAR_client_secret_ as explained previously.
 
 Provision the changes to infrastructure in your Azure account, use:
 
@@ -87,7 +87,7 @@ kube_config = <sensitive>
 resource_group_name = SysTest-k8s-resources
 ```
 
-Some of the output variable are hidden because they were marked as sensitive, but all of their values have been written inside the Terraform state object in the remote Azure storage. That storage is encrypted at rest, and can only be accessed using the Azure CLI or the Azure Portal with your login credentials, or using the ARM_ACCESS_KEY environment variable that we retrieve from Key Vault also using Azure CLI and your login credentials.
+Some of the output variables are hidden because they were marked as sensitive, but all of their values have been written inside the Terraform state object in the remote Azure storage. That storage is encrypted at rest, and can only be accessed using the Azure CLI or the Azure Portal with your login credentials, or using the ARM_ACCESS_KEY environment variable that we retrieve from Key Vault also using Azure CLI and your login credentials.
 
 You will now have on your Azure account:
  * An storage group, that holds the rest of the resources
@@ -100,7 +100,7 @@ You will now have on your Azure account:
 
 You could omit the creation of the public IP and load balancer, as those resources would be automatically provisioned for your cluster. But when you provision them in an explicit way, if you later remove the Kubernetes cluster to replace it for a different one, you will maintain the same IP address.
 
-Several aditional resource groups will appear on your Azure account, that are automatically created to be able to serve your Kubernetes cluster requirements.
+Several additional resource groups will appear on your Azure account, that are automatically created to be able to serve your Kubernetes cluster requirements.
 
 _Improvement_: You could create the service principal using also Terraform, [example](https://medium.com/@kari.marttila/creating-azure-kubernetes-service-aks-the-right-way-9b18c665a6fa).
 
