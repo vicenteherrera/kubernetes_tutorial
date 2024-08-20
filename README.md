@@ -8,6 +8,8 @@ I built this tutorial when joining [Sysdig](https://sysdig.com){:target="_blank"
 
 As usual, it has grown old, for example it mentions Helm v2, including the Tiller component, where at the time of writing this updated intro v3 is out that doesn't require Tiller. Also there are many _improvements_ listed on each section, for ideas about how to improve the tutorial.
 
+_It is not recommended to follow it today, but I leave it here as a reference if someone wants to use it to create their own updated version._
+
 Tools used in the tutorial:
 * Kubernetes: Using _Azure Kubernetes Service (AKS)_, but you could replace this for local _Minikube_ if you want.
 * Terraform: Infrastructure as code, to create the cluster
