@@ -1,6 +1,6 @@
 # Kubernetes tutorial
 
-Author: **Vicente Herrera** - [@vicen_herrera](https://twitter.com/vicen_herrera)  
+Author: **Vicente Herrera** - [@v1z3n](https://twitter.com/v1z3n)  
 
 ## Introduction
 

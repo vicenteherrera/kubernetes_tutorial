@@ -5,7 +5,7 @@ description: Azure Kubernetes Service, Terraform, Helm, Prometheus, Grafana, Ska
 ---
 # Kubernetes tutorial
 
-Author: **Vicente Herrera** - [@vicen_herrera](https://twitter.com/vicen_herrera)  
+Author: **Vicente Herrera** - [@v1z3n](https://twitter.com/v1z3n)  
 Level: **Intermediate**  
 Language: **English**  
 Prerequisites: Basic knowledge in containers and Kubernetes  
